@@ -1,0 +1,12 @@
+{
+  "name": "community-code16",
+  "version": "1.0.0",
+  "description": "community project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "author": "Jong Hui Park",
+  "license": "MIT"
+}

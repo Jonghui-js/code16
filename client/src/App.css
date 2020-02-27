@@ -1,0 +1,230 @@
+:root {
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: orange;
+}
+
+/* 상단 네비게이션 바*/
+
+.navbar {
+  background-color: lightskyblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  opacity: 0.7;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+.navbar a {
+  color: black;
+  font-weight: bold;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.navbar p {
+  color: black;
+  display: none;
+}
+
+/*경로값에 따라 보여줄 본문 컨테이너
+  * 패딩 좌우에만 2rem 씩 있음
+*/
+
+.container {
+  max-width: 900px;
+  font-size: 12px;
+  margin: auto;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 1rem;
+  /* background-color: mediumorchid; */
+}
+
+.community {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
+  line-height: 1.3em;
+  margin-bottom: 2rem;
+  /* background-color: mediumspringgreen; */
+}
+.community tr.list {
+  line-height: 260%;
+}
+
+.community td.title {
+  color: black;
+  font-size: 14px;
+  padding: 0 10px 0 0px;
+  line-height: 120%;
+}
+.community td.title span.mbti-type {
+  font-family: 'B612 Mono';
+  background-color: darkseagreen;
+  font-weight: bold;
+  color: black;
+  margin-right: 3px;
+}
+.community td.title span.comments {
+  margin-left: 3px;
+}
+
+.community td.date {
+  color: #464646;
+  font-size: 14px;
+  padding: 0 0px 0 0px;
+  word-break: keep-all;
+}
+
+.pagination {
+  text-align: center;
+}
+.pagination a {
+  color: black;
+  padding: 8px 8px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.signup {
+  width: 100%;
+  margin: 0;
+  /* background-color: mediumblue; */
+}
+
+.signup h1,
+p {
+  text-align: center;
+}
+
+.login h1,
+p {
+  text-align: center;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.signup .form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form input[type='date'],
+.form textarea {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+
+.signup .form select {
+  display: block;
+
+  width: 150px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+
+.community a {
+  color: black;
+}
+.community a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.btn {
+  display: inline-block;
+  background: lightskyblue;
+  color: black;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btn.btn-signup {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+
+.btn.btn-login {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+
+@media (max-width: 700px) {
+  /* Navbar */
+
+  .container {
+    margin-top: 10rem;
+  }
+  .navbar {
+    display: block;
+    text-align: center;
+  }
+
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .navbar p {
+    display: block;
+  }
+
+  .community td.title {
+    font-size: 12px;
+  }
+  .community td.date {
+    font-size: 12px;
+  }
+  .pagination a {
+    font-size: 13px;
+  }
+}
