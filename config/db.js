@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const config = require('config');
-//디폴트.js에서 몽고uri를 가지고온다.
 const db = config.get('mongoURI');
 
 // .connect(uri, 옵션들)

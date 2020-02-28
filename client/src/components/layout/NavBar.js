@@ -6,9 +6,9 @@ const NavBar = () => {
   return (
     <nav className='navbar'>
       <h1>
-        <a href='!#'>
+        <Link to='/'>
           <Icon name='qq' /> CODE 16
-        </a>
+        </Link>
       </h1>
       <p>16가지 MBTI 커뮤니티</p>
       <ul>
