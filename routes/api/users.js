@@ -16,6 +16,10 @@ router.post(
     check('name', 'Name is required')
       .not()
       .isEmpty(),
+    check('mbti', 'Please select your MBTI type')
+      .not()
+      .isEmpty(),
+
     check('email', 'Please include a valid email').isEmail(),
     check(
       'password',

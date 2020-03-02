@@ -52,6 +52,7 @@ export const signup = ({ name, email, password, mbti }) => async dispatch => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
+      console.log(errors);
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
     dispatch({

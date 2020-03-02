@@ -22,6 +22,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
+
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
@@ -30,7 +31,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/community' />;
+    return <Redirect to='/' />;
   }
   return (
     <div className='signup'>
@@ -44,7 +45,6 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
           <select
             name='mbti'
             className='signup-mbti'
-            defaultValue='type'
             onChange={e => onChange(e)}
           >
             <option value='type'>MBTI 선택</option>
@@ -71,6 +71,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             type='text'
             placeholder='Name'
             name='name'
+            value={name}
             onChange={e => onChange(e)}
           />
         </div>
