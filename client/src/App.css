@@ -265,3 +265,11 @@ p {
     font-size: 13px;
   }
 }
+
+/*
+@media (prefers-color-scheme: dark) {
+  body {
+    background: black;
+  }
+}
+*/
