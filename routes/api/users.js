@@ -7,9 +7,8 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-//@route    POST api/users
-//@decs     Register user
-//@access   public
+//회원가입
+
 router.post(
   '/',
   [

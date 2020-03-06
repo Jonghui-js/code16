@@ -5,17 +5,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
+//로그인한 경우에 보여줄 네비게이션 링크
 const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/'>Community</Link>
+        <Link to='/posts'>Community</Link>
       </li>
       <li>
-        <Link to='!#'>Hot</Link>
-      </li>
-      <li>
-        <Link to='/#'>my page</Link>
+        <Link to='/mypage'>my page</Link>
       </li>
       <li>
         <a href='/' onClick={logout}>
@@ -28,10 +26,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/'>Community</Link>
-      </li>
-      <li>
-        <a href='!#'>Hot</a>
+        <Link to='/posts'>Community</Link>
       </li>
       <li>
         <Link to='/signup'>Sign Up</Link>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 
 const Main = () => {
   return (
     <>
+      <Button size='small'>글쓰기</Button>
+
       <table className='community'>
         <tbody>
           <tr className='list'>
