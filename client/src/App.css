@@ -179,7 +179,16 @@ p {
   outline: none;
 }
 .btn.btn-back-list {
-  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.btn.btn-post-delete {
   width: 100%;
   max-width: 100px;
   margin: auto;

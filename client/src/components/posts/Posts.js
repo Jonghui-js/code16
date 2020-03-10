@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
+import { Pagination } from 'semantic-ui-react';
 
 // post 상태에서 posts, loading 가져오기
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -26,6 +27,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <Link to='/create-post'>
         <button className='btn btn-post-create'>글쓰기</button>
       </Link>
+      <Pagination defaultActivePage={5} totalPages={10} />
     </Fragment>
   );
 };
