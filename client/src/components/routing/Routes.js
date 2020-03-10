@@ -9,7 +9,6 @@ import PostForm from '../posts/PostForm';
 import PrivateRoute from './PrivateRoute';
 import MyPage from '../mypage/MyPage';
 import Landing from '../layout/Landing';
-import Test from '../posts/Test';
 
 const Routes = () => {
   return (

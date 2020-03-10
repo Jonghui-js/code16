@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
@@ -20,7 +20,7 @@ const PostForm = ({ addPost, history, auth: { user } }) => {
         history.push('/posts');
       }}
     >
-      <Label color='blue' ribbon='left' size='large'>
+      <Label color='blue' ribbon>
         {user.name}님의 MBTI유형은 {user.mbti}입니다 😀😍
       </Label>
 

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setAlert } from './alert';
 import {
   GET_POSTS,
   POST_ERROR,
@@ -143,8 +142,6 @@ export const addComment = (postId, formData) => async dispatch => {
       type: ADD_COMMENT,
       payload: res.data
     });
-
-    dispatch(setAlert('Comment Added', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -163,8 +160,6 @@ export const deleteComment = (postId, commentId) => async dispatch => {
       type: REMOVE_COMMENT,
       payload: commentId
     });
-
-    dispatch(setAlert('Comment Removes', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,

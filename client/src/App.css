@@ -200,12 +200,50 @@ p {
 
 .btn.btn-post-create {
   display: block;
+  margin: 10px auto;
   width: 100%;
   max-width: 100px;
-  margin: auto;
   padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid black;
+}
+
+.btn.btn-comment-create {
+  position: absolute;
+  width: 12%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  min-height: 107px;
+  margin-left: 5px;
+}
+
+.comment {
+  position: relative;
+}
+
+.comment-text {
+  font-size: 15px;
+}
+
+.comment-meta {
+  color: gray;
+}
+
+.comment-meta .mbti-type {
+  font-family: 'B612 Mono';
+  background-color: darkseagreen;
+  font-weight: bold;
+  color: black;
+  margin-right: 3px;
+}
+
+.btn.btn-comment-remove {
+  width: fit-content;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.7rem;
+  color: red;
+  background-color: white;
 }
 
 .btn.btn-signup {
@@ -264,6 +302,10 @@ p {
 
 /* 포스트폼 */
 
+.post-create .title:focus {
+  outline: none;
+}
+
 .post-create .textarea {
   resize: none;
   overflow: hidden;
@@ -275,6 +317,29 @@ p {
   font-size: 15px;
   padding: 10px;
   margin-bottom: 10px;
+  white-space: pre-line;
+}
+
+.post-create .textarea:focus {
+  outline: none;
+}
+
+.comment-form .textarea {
+  position: relative;
+  resize: none;
+  overflow: hidden;
+  border: 1px solid black;
+  overflow-wrap: break-word;
+  display: inline;
+  width: 85%;
+  min-height: 100px;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-form .textarea:focus {
+  outline: none;
 }
 
 .post-create .title {
@@ -289,7 +354,6 @@ p {
 
 .post-name {
   font-weight: bold;
-  margin-right: 100px;
 }
 @media (max-width: 700px) {
   /* Navbar */

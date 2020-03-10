@@ -6,6 +6,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { getPost, deletePost } from '../../actions/post';
 import { Header, Divider, Button, Modal, Icon } from 'semantic-ui-react';
 import Moment from 'react-moment';
+import CommentForm from './CommentForm';
+import CommentItem from './CommentItem';
 
 const Post = ({
   getPost,
@@ -33,8 +35,20 @@ const Post = ({
         </Header.Subheader>
       </Header>
       <Divider></Divider>
-      <div>{post.text}</div>
-      <Divider />
+      <div style={{ whiteSpace: 'pre-line', fontSize: '13px' }}>
+        {post.text}
+      </div>
+
+      <Header as='h5' dividing>
+        댓글
+      </Header>
+      <CommentForm postId={post._id} />
+      <div className='comments'>
+        {post.comments.map(comment => (
+          <CommentItem key={comment._id} comment={comment} postId={post._id} />
+        ))}
+      </div>
+
       <Link to='/posts'>
         <button className='btn btn-back-list'>목록</button>
       </Link>
