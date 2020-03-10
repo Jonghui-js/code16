@@ -2,31 +2,62 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import PostItem from '../posts/PostItem';
 import { Link } from 'react-router-dom';
-import { getPost } from '../../actions/post';
+import { getPost, deletePost } from '../../actions/post';
+import { Header, Divider, Label } from 'semantic-ui-react';
+import Moment from 'react-moment';
 
-const Post = ({ getPost, post: { post, loading }, match }) => {
+const Post = ({
+  getPost,
+  post: { post, loading, user, name, date, _id },
+  match,
+  deletePost,
+  auth
+}) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost]);
+
   return loading || post === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <Link to='/posts' className='btn'>
-        Back to Posts
+      <Label color='blue' ribbon='left' size='large'>
+        {`${post.name}[${post.mbti}]의 이야기`}
+      </Label>
+      <Header as='h3'>
+        {post.title}
+
+        <Header.Subheader>
+          <Moment format='YYYY/MM/DD HH:mm'>{post.date}</Moment>
+        </Header.Subheader>
+      </Header>
+      <Divider></Divider>
+      <div>
+        <pre>{post.text}</pre>
+      </div>
+      <Divider />
+      <Link to='/posts'>
+        <button className='btn btn-back-list'>목록</button>
       </Link>
-      <PostItem post={post} showActions={false} />
+
+      {!auth.loading && post.user === auth.user._id && (
+        <button onClick={() => deletePost(_id)} type='button'>
+          삭제하기dfsddsgsdgs
+        </button>
+      )}
     </Fragment>
   );
 };
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  auth: state.auth
 });
-export default connect(mapStateToProps, { getPost })(Post);
+export default connect(mapStateToProps, { getPost, deletePost })(Post);

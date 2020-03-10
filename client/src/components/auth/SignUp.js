@@ -69,7 +69,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Name'
+            placeholder='ID'
             name='name'
             value={name}
             onChange={e => onChange(e)}

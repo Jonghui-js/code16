@@ -10,10 +10,10 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/posts'>Community</Link>
+        <Link to='/posts'>커뮤니티</Link>
       </li>
       <li>
-        <Link to='/mypage'>my page</Link>
+        <Link to='/mypage'>계정관리</Link>
       </li>
       <li>
         <a href='/' onClick={logout}>
@@ -26,13 +26,13 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/posts'>Community</Link>
+        <Link to='/posts'>커뮤니티</Link>
       </li>
       <li>
-        <Link to='/signup'>Sign Up</Link>
+        <Link to='/signup'>회원가입</Link>
       </li>
       <li>
-        <Link to='/login'>Log In</Link>
+        <Link to='/login'>로그인</Link>
       </li>
     </ul>
   );

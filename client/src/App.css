@@ -15,7 +15,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: orange;
 }
 
 /* 상단 네비게이션 바*/
@@ -60,7 +59,6 @@ body {
   padding: 0 2rem;
   margin-top: 6rem;
   margin-bottom: 1rem;
-  /* background-color: mediumorchid; */
 }
 
 .community {
@@ -180,6 +178,26 @@ p {
   transition: opacity 0.2s ease-in;
   outline: none;
 }
+.btn.btn-back-list {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.btn.btn-post-create {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
 
 .btn.btn-signup {
   display: block;
@@ -235,6 +253,30 @@ p {
   color: #fff;
 }
 
+/* 포스트폼 */
+
+.post-create .textarea {
+  resize: none;
+  overflow: hidden;
+  border: 1px solid black;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 500px;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.post-create .title {
+  border: 1px solid black;
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 17px;
+  padding: 3px;
+}
 @media (max-width: 700px) {
   /* Navbar */
 

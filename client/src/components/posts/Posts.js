@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
-import PostForm from './PostForm';
 
 // post 상태에서 posts, loading 가져오기
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -25,7 +24,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
         </tbody>
       </table>
       <Link to='/create-post'>
-        <button>글쓰기</button>
+        <button className='btn btn-post-create'>글쓰기</button>
       </Link>
     </Fragment>
   );

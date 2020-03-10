@@ -3,48 +3,57 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 import { withRouter } from 'react-router-dom';
+import { Label } from 'semantic-ui-react';
 
-const PostForm = ({ addPost, history }) => {
+const PostForm = ({ addPost, history, auth: { user } }) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
 
   return (
-    <div>
-      <div>
-        <h3>Say Something...</h3>
-      </div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          addPost({ text, title });
-          setText('');
-          setTitle('');
-          history.push('/posts');
-        }}
-      >
-        <input
-          type='text'
-          name='title'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
-        <textarea
-          name='text'
-          cols='30'
-          rows='5'
-          value={text}
-          onChange={e => setText(e.target.value)}
-          placeholder='Create a post'
-          required
-        ></textarea>
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
-      </form>
-    </div>
+    <form
+      className='post-create'
+      onSubmit={e => {
+        e.preventDefault();
+        addPost({ text, title });
+        setText('');
+        setTitle('');
+        history.push('/posts');
+      }}
+    >
+      <Label color='blue' ribbon='left' size='large'>
+        {user.name}님의 MBTI유형은 {user.mbti}입니다 😀😍
+      </Label>
+
+      <input
+        required
+        className='title'
+        type='text'
+        name='title'
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+        placeholder='제목을 입력하세요'
+      />
+
+      <textarea
+        className='textarea'
+        name='text'
+        value={text}
+        onChange={e => setText(e.target.value)}
+        required
+      />
+
+      <input type='submit' className='btn btn-post-create' value='Submit' />
+    </form>
   );
 };
 
 PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default connect(null, { addPost })(withRouter(PostForm));
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { addPost })(withRouter(PostForm));

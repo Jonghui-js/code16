@@ -9,6 +9,7 @@ import PostForm from '../posts/PostForm';
 import PrivateRoute from './PrivateRoute';
 import MyPage from '../mypage/MyPage';
 import Landing from '../layout/Landing';
+import Test from '../posts/Test';
 
 const Routes = () => {
   return (
@@ -16,7 +17,7 @@ const Routes = () => {
       <Alert />
       <Switch>
         <Route exact path='/' component={Landing} />
-        <Route exact path='/posts' component={Posts} />
+        <PrivateRoute exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/create-post' component={PostForm} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/login' component={LogIn} />
