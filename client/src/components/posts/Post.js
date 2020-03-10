@@ -22,20 +22,15 @@ const Post = ({
     <Spinner />
   ) : (
     <Fragment>
-      <Label color='blue' ribbon='left' size='large'>
-        {`${post.name}[${post.mbti}]의 이야기`}
-      </Label>
       <Header as='h3'>
         {post.title}
-
         <Header.Subheader>
+          <span className='post-name'>{`${post.name}[${post.mbti}]`} </span>
           <Moment format='YYYY/MM/DD HH:mm'>{post.date}</Moment>
         </Header.Subheader>
       </Header>
       <Divider></Divider>
-      <div>
-        <pre>{post.text}</pre>
-      </div>
+      <div>{post.text}</div>
       <Divider />
       <Link to='/posts'>
         <button className='btn btn-back-list'>목록</button>

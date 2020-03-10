@@ -40,6 +40,8 @@ const PostForm = ({ addPost, history, auth: { user } }) => {
         value={text}
         onChange={e => setText(e.target.value)}
         required
+        cols='250'
+        wrap='hard'
       />
 
       <input type='submit' className='btn btn-post-create' value='Submit' />
