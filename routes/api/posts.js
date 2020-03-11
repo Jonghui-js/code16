@@ -46,6 +46,39 @@ router.post(
   }
 );
 
+//글 수정하기
+router.put(
+  '/:id',
+  [
+    auth,
+    [
+      check('text', 'Text is required')
+        .not()
+        .isEmpty(),
+      check('title', 'Title is required')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const post = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { title: req.body.title, text: req.body.text } },
+        { returnNewDocument: true }
+      );
+      res.json(post);
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send('Server error');
+    }
+  }
+);
+
 //글목록 가져오기.
 router.get('/', auth, async (req, res) => {
   try {

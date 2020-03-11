@@ -198,6 +198,16 @@ p {
   margin-top: 20px;
 }
 
+.btn.btn-post-rewrite {
+  width: 100%;
+  max-width: 100px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
 .btn.btn-post-create {
   display: block;
   margin: 10px auto;

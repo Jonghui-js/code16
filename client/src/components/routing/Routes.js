@@ -5,6 +5,7 @@ import LogIn from '../auth/LogIn';
 import Alert from '../layout/Alert';
 import Posts from '../posts/Posts';
 import Post from '../posts/Post';
+import RePost from '../posts/RePost';
 import PostForm from '../posts/PostForm';
 import PrivateRoute from './PrivateRoute';
 import MyPage from '../mypage/MyPage';
@@ -22,6 +23,7 @@ const Routes = () => {
         <Route exact path='/login' component={LogIn} />
         <PrivateRoute exact path='/mypage' component={MyPage} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
+        <PrivateRoute exact path='/posts/rewrite/:id' component={RePost} />
       </Switch>
     </section>
   );

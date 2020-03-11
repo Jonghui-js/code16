@@ -6,13 +6,15 @@ import {
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  REWRITE_POST
 } from '../actions/types';
 
 const initialState = {
   posts: [],
   post: null,
   loading: true,
+  editing: false,
   error: {},
   currentpage: null
 };
@@ -23,14 +25,17 @@ export default function(state = initialState, action) {
     case GET_POSTS:
       return {
         ...state,
+        post: null,
         posts: payload,
-        loading: false
+        loading: false,
+        editing: false
       };
     case GET_POST:
       return {
         ...state,
         post: payload,
-        loading: false
+        loading: false,
+        editing: true
       };
     case ADD_POST:
       return {
@@ -43,6 +48,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== payload),
+        editing: false,
         loading: false
       };
     case POST_ERROR:
@@ -50,6 +56,15 @@ export default function(state = initialState, action) {
         ...state,
         error: payload,
         loading: false
+      };
+    case REWRITE_POST:
+      return {
+        ...state,
+        posts: [
+          ...state.posts.filter(post => post._id !== payload._id),
+          payload
+        ],
+        editing: false
       };
     case UPDATE_LIKES:
       return {

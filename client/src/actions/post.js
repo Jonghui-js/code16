@@ -7,7 +7,8 @@ import {
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  REWRITE_POST
 } from './types';
 
 //GET Posts -> 제목 추가해야함
@@ -72,6 +73,30 @@ export const deletePost = id => async dispatch => {
     dispatch({
       type: DELETE_POST,
       payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//글 수정하기.
+
+export const rewritePost = (id, formData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await axios.put(`/api/posts/${id}`, formData, config);
+    console.log(res.data);
+
+    dispatch({
+      type: REWRITE_POST,
+      payload: res.data
     });
   } catch (err) {
     dispatch({

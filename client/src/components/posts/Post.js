@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { Link, withRouter } from 'react-router-dom';
-import { getPost, deletePost } from '../../actions/post';
+import { getPost, deletePost, rewritePost } from '../../actions/post';
 import { Header, Divider, Button, Modal, Icon } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import CommentForm from './CommentForm';
@@ -54,44 +54,49 @@ const Post = ({
       </Link>
 
       {!auth.loading && post.user === auth.user._id && (
-        <Modal
-          trigger={
-            <button
-              className='btn btn-post-delete'
-              onClick={() => setModal({ open: true })}
-            >
-              삭제
-            </button>
-          }
-          basic
-          size='small'
-          open={modal.open}
-        >
-          <Header
-            icon='exclamation triangle'
-            content='이 글을 정말로 삭제하시겠습니까?'
-          ></Header>
-          <Modal.Actions>
-            <Button
-              basic
-              color='red'
-              inverted
-              onClick={() => {
-                deletePost(post._id);
-                history.push('/posts');
-              }}
-            >
-              <Icon name='trash alternate' /> 삭제
-            </Button>
-            <Button
-              color='green'
-              inverted
-              onClick={() => setModal({ open: false })}
-            >
-              <Icon name='angle double left' inverted /> 취소
-            </Button>
-          </Modal.Actions>
-        </Modal>
+        <>
+          <Modal
+            trigger={
+              <button
+                className='btn btn-post-delete'
+                onClick={() => setModal({ open: true })}
+              >
+                삭제
+              </button>
+            }
+            basic
+            size='small'
+            open={modal.open}
+          >
+            <Header
+              icon='exclamation triangle'
+              content='이 글을 정말로 삭제하시겠습니까?'
+            ></Header>
+            <Modal.Actions>
+              <Button
+                basic
+                color='red'
+                inverted
+                onClick={() => {
+                  deletePost(post._id);
+                  history.push('/posts');
+                }}
+              >
+                <Icon name='trash alternate' /> 삭제
+              </Button>
+              <Button
+                color='green'
+                inverted
+                onClick={() => setModal({ open: false })}
+              >
+                <Icon name='angle double left' inverted /> 취소
+              </Button>
+            </Modal.Actions>
+          </Modal>
+          <Link to={`/posts/rewrite/${post._id}`}>
+            <button className='btn btn-post-rewrite'>수정</button>
+          </Link>
+        </>
       )}
     </Fragment>
   );
@@ -101,12 +106,13 @@ Post.propTypes = {
   getPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
-  deletePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired,
+  rewritePost: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   post: state.post,
   auth: state.auth
 });
-export default connect(mapStateToProps, { getPost, deletePost })(
+export default connect(mapStateToProps, { getPost, deletePost, rewritePost })(
   withRouter(Post)
 );
