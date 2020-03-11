@@ -7,16 +7,17 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  REWRITE_POST
+  REWRITE_POST,
+  GET_CURRENTPOSTS
 } from '../actions/types';
 
 const initialState = {
   posts: [],
   post: null,
-  loading: true,
+  loading: false,
   editing: false,
   error: {},
-  currentpage: null
+  pagination: { currentPage: 1, currentPosts: [], totalPages: 100 }
 };
 
 export default function(state = initialState, action) {
@@ -29,6 +30,16 @@ export default function(state = initialState, action) {
         posts: payload,
         loading: false,
         editing: false
+      };
+    case GET_CURRENTPOSTS:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          currentPage: payload.currentPage,
+          currentPosts: payload.currentPosts,
+          totalPages: payload.totalPages
+        }
       };
     case GET_POST:
       return {

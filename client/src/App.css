@@ -99,13 +99,11 @@ body {
 }
 
 .pagination {
-  text-align: center;
-}
-.pagination a {
-  color: black;
-  padding: 8px 8px;
-  text-decoration: none;
-  font-size: 17px;
+  margin: 10px auto;
+  font-size: 7px;
+  display: block;
+  width: fit-content;
+  padding: 0.4rem;
 }
 
 .form .form-group {
@@ -390,9 +388,6 @@ p {
   }
   .community td.date {
     font-size: 12px;
-  }
-  .pagination a {
-    font-size: 13px;
   }
 }
 

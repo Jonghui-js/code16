@@ -90,6 +90,27 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// 현재페이지 글 가져오기
+
+router.get('/pages/:page', auth, async (req, res) => {
+  try {
+    console.log(req.params);
+    const currentPage = req.params.page == 'undefined' ? 1 : req.params.page;
+    const posts = await Post.find().sort({ date: -1 });
+    const totalPosts = posts.length;
+    const totalPages = Math.ceil(totalPosts / 15);
+    const currentPosts = await Post.find()
+      .sort({ date: -1 })
+      .skip((currentPage - 1) * 15)
+      .limit(15);
+
+    res.json({ totalPages, currentPosts, currentPage });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
 
 //하나의 글을 가져오기.

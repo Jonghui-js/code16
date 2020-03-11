@@ -8,16 +8,52 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  REWRITE_POST
+  REWRITE_POST,
+  GET_CURRENTPOSTS
 } from './types';
 
 //GET Posts -> 제목 추가해야함
 export const getPosts = () => async dispatch => {
   try {
-    const res = await axios.get('/api/posts');
+    const res = await axios.get(`/api/posts`);
 
     dispatch({
       type: GET_POSTS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//GET Post
+export const getPost = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//GET current Posts !!!!!!!! 페이지네이션
+
+export const getCurrentPosts = page => async dispatch => {
+  try {
+    const res = await axios.get(`/api/posts/pages/${page}`);
+
+    dispatch({
+      type: GET_CURRENTPOSTS,
       payload: res.data
     });
   } catch (err) {
@@ -123,23 +159,6 @@ export const addPost = formData => async dispatch => {
     });
 
     //dispatch(setAlert('Post Created', 'success'));
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-//GET Post
-export const getPost = id => async dispatch => {
-  try {
-    const res = await axios.get(`/api/posts/${id}`);
-
-    dispatch({
-      type: GET_POST,
-      payload: res.data
-    });
   } catch (err) {
     dispatch({
       type: POST_ERROR,

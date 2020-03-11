@@ -4,13 +4,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-import { getPosts } from '../../actions/post';
+import { getCurrentPosts, getPosts } from '../../actions/post';
+import { Pagination } from 'semantic-ui-react';
 
 // post 상태에서 posts, loading 가져오기
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+const Posts = ({
+  getCurrentPosts,
+  post: {
+    posts,
+    loading,
+    pagination: { currentPage, currentPosts, totalPages }
+  }
+}) => {
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getCurrentPosts();
+  }, []);
 
   return loading ? (
     <Spinner />
@@ -18,11 +26,26 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Fragment>
       <table className='community'>
         <tbody>
-          {posts.map(post => (
+          {currentPosts.map(post => (
             <PostItem key={post._id} post={post} />
           ))}
         </tbody>
       </table>
+      <div className='pagination'>
+        <Pagination
+          activePage={!currentPage ? 1 : currentPage}
+          onPageChange={event => {
+            console.log(event.currentTarget.innerText);
+            !event.currentTarget.innerText
+              ? getCurrentPosts(1)
+              : getCurrentPosts(event.currentTarget.innerText);
+          }}
+          totalPages={totalPages}
+          size='mini'
+          firstItem={null}
+          lastItem={null}
+        />
+      </div>
       <Link to='/create-post'>
         <button className='btn btn-post-create'>글쓰기</button>
       </Link>
@@ -31,6 +54,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 };
 
 Posts.propTypes = {
+  getCurrentPosts: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
@@ -39,4 +63,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getCurrentPosts, getPosts })(Posts);
