@@ -29,8 +29,8 @@ const Post = ({
     <Fragment>
       <Header as='h3'>
         {post.title}
-        <Header.Subheader>
-          <span className='post-name'>{`${post.name}[${post.mbti}]`} </span>
+        <Header.Subheader className='post-name'>
+          <span>{post.mbti}</span>&nbsp;{post.name} &nbsp;
           <Moment format='YYYY/MM/DD HH:mm'>{post.date}</Moment>
         </Header.Subheader>
       </Header>

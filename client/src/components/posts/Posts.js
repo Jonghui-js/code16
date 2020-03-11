@@ -6,6 +6,8 @@ import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getCurrentPosts, getPosts } from '../../actions/post';
 import { Pagination } from 'semantic-ui-react';
+import { SET_ALERT } from '../../actions/types';
+import { setAlert } from '../../actions/alert';
 
 // post 상태에서 posts, loading 가져오기
 const Posts = ({
@@ -17,7 +19,7 @@ const Posts = ({
   }
 }) => {
   useEffect(() => {
-    getCurrentPosts();
+    getCurrentPosts(currentPage);
   }, []);
 
   return loading ? (
@@ -44,6 +46,8 @@ const Posts = ({
           size='mini'
           firstItem={null}
           lastItem={null}
+          prevItem={null}
+          nextItem={null}
         />
       </div>
       <Link to='/create-post'>

@@ -34,6 +34,7 @@ export default function(state = initialState, action) {
     case GET_CURRENTPOSTS:
       return {
         ...state,
+        post: null,
         pagination: {
           ...state.pagination,
           currentPage: payload.currentPage,
