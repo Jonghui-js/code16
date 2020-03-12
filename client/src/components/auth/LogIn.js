@@ -55,7 +55,7 @@ const LogIn = ({ login, isAuthenticated }) => {
         <input type='submit' className='btn btn-login' value='Login' />
       </form>
       <p className='my-1'>
-        Don't have an account? <Link to='/signup'>Sign Up</Link>
+        아직 계정이 없으신가요? <Link to='/signup'>회원가입</Link>
       </p>
     </div>
   );

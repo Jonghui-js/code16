@@ -4,12 +4,7 @@ import NavBar from './components/layout/NavBar';
 import Routes from './components/routing/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 

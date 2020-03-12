@@ -1,7 +1,7 @@
 {
-  "name": "community-code16",
+  "name": "16log",
   "version": "1.0.0",
-  "description": "community project",
+  "description": "MBTI 16 types community ",
   "main": "server.js",
   "scripts": {
     "start": "node server",
@@ -9,7 +9,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Jong Hui Park",
+  "author": "parkjonghui",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

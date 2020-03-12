@@ -6,8 +6,6 @@ import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getCurrentPosts, getPosts } from '../../actions/post';
 import { Pagination } from 'semantic-ui-react';
-import { SET_ALERT } from '../../actions/types';
-import { setAlert } from '../../actions/alert';
 
 // post 상태에서 posts, loading 가져오기
 const Posts = ({
@@ -20,7 +18,28 @@ const Posts = ({
 }) => {
   useEffect(() => {
     getCurrentPosts(currentPage);
-  }, []);
+  }, [getCurrentPosts, currentPage]);
+
+  /*
+  const mbtiType = [
+    'ISTJ',
+    'ISFJ',
+    'INFJ',
+    'INTJ',
+    'ISTP',
+    'ISFP',
+    'INFP',
+    'INTP',
+    'ESTP',
+    'ESFP',
+    'ENFP',
+    'ENTP',
+    'ESTJ',
+    'ESFJ',
+    'ENFJ',
+    'ENTJ'
+  ];
+  */
 
   return loading ? (
     <Spinner />

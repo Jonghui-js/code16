@@ -24,20 +24,20 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
     e.preventDefault();
 
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      setAlert('비밀번호가 일치하지 않습니다', 'danger');
     } else {
       signup({ name, email, password, mbti });
     }
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/posts' />;
   }
   return (
     <div className='signup'>
       <h1>회원 가입</h1>
       <p>
-        <Icon name='signup'></Icon> code16에서는 MBTI 유형과 ID로 소통합니다.
+        <Icon name='signup'></Icon> 16log 에서는 MBTI 유형과 ID로 소통합니다.
       </p>
 
       <form className='form' onSubmit={e => onSubmit(e)}>
@@ -106,7 +106,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
         <input type='submit' className='btn btn-signup' value='가입하기' />
       </form>
       <p className='my-1'>
-        Already have an account? <Link to='/login'>Log In</Link>
+        이미 계정이 있으신가요? <Link to='/login'>로그인</Link>
       </p>
     </div>
   );

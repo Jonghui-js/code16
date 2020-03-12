@@ -13,9 +13,6 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to='/posts'>커뮤니티</Link>
       </li>
       <li>
-        <Link to='/mypage'>계정관리</Link>
-      </li>
-      <li>
         <a href='/' onClick={logout}>
           <Icon name='log out'></Icon>
         </a>
@@ -26,7 +23,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/posts'>커뮤니티</Link>
+        <Link to='/posts'>게시판</Link>
       </li>
       <li>
         <Link to='/signup'>회원가입</Link>
@@ -41,7 +38,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar'>
       <h1>
         <Link to='/'>
-          <Icon name='qq' /> CODE 16
+          <Icon name='qq' /> 16 log
         </Link>
       </h1>
       <p>16가지 MBTI 커뮤니티</p>

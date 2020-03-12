@@ -47,14 +47,14 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: '계정이 존재하지 않습니다.' }] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: '비밀번호를 다시 입력해주세요' }] });
       }
 
       //return jsonwebtoken

@@ -1,18 +1,29 @@
 import React, { Fragment } from 'react';
+import { Header, Message } from 'semantic-ui-react';
 
 const Landing = () => {
   return (
     <Fragment>
-      <h1> MBTI란?</h1>
-      <p>
-        조용하고 과묵하며 논리와 분석으로 문제를 해결하기 좋아한다. 과묵하나
-        관심이 있는 분야에 대해서는 말을 잘하며 이해가 빠르고 높은 직관력으로
-        통찰하는 재능과 지적 호기심이 많다. 개인적인 인간관계나 친목회 혹은 잡담
-        등에 별로 관심이 없으며 매우 분석적이고 논리적이며 객관적비평을 잘 한다.
-        지나치게 추상적이고 비현실적이며 사교성이 결여되기 쉬운 경향이 있고,
-        때로는 자신의 지적 능력을 은근히 과시하는 수가 있기 때문에 거만하게 보일
-        수 있다.
-      </p>
+      <Header as='h2'>16log에 오신 것을 환영합니다.</Header>
+      <Message color='blue' floating>
+        <Message.Header>사용한 기술 스택</Message.Header>
+        <Message.List>
+          <Message.Item>
+            프론트엔드: react, redux, semantic-ui-react, fontawesome
+          </Message.Item>
+          <Message.Item>백엔드: node, express </Message.Item>
+          <Message.Item>데이터베이스: mongoDB</Message.Item>
+          <Message.Item>기타 도구들: postman, jsonwebtoken, axios</Message.Item>
+        </Message.List>
+      </Message>
+      <Message color='teal'>
+        <Message.Header>16log version1.0.0</Message.Header>
+        <Message.List>
+          <Message.Item>회원가입, 로그인</Message.Item>
+          <Message.Item>게시판 글 작성, 수정, 삭제</Message.Item>
+          <Message.Item>게시판 댓글 작성, 수정, 삭제</Message.Item>
+        </Message.List>
+      </Message>
     </Fragment>
   );
 };
