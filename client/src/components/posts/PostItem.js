@@ -19,9 +19,9 @@ const PostItem = ({
         <td className='title'>
           <span className='mbti-type'>{mbti}</span>
           <Link to={`/posts/${_id}`}>{title}</Link>
-          <span className='comments'>
-            <a href='!#'>[{comments.length}]</a>
-          </span>
+          <Link to={`/posts/${_id}`} className='comments'>
+            [{comments.length}]
+          </Link>
         </td>
 
         <td className='date'>
