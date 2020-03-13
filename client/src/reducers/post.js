@@ -17,7 +17,7 @@ const initialState = {
   loading: false,
   editing: false,
   error: {},
-  pagination: { currentPage: 1, currentPosts: [], totalPages: 100 }
+  pagination: { currentPage: 1, currentPosts: [], totalPages: 10 }
 };
 
 export default function(state = initialState, action) {

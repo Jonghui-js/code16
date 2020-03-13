@@ -44,7 +44,7 @@ const PostForm = ({ addPost, history, auth: { user } }) => {
         wrap='hard'
       />
 
-      <input type='submit' className='btn btn-post-create' value='Submit' />
+      <input type='submit' className='btn btn-post-create' value='등록' />
     </form>
   );
 };

@@ -22,6 +22,9 @@ const Landing = () => {
           <Message.Item>회원가입, 로그인</Message.Item>
           <Message.Item>게시판 글 작성, 수정, 삭제</Message.Item>
           <Message.Item>게시판 댓글 작성, 수정, 삭제</Message.Item>
+          <Message.Item>
+            글, 댓글 작성자의 mbti 유형이 표시됨(다음 버전에서 필터링 추가)
+          </Message.Item>
         </Message.List>
       </Message>
     </Fragment>
