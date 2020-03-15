@@ -5,6 +5,7 @@ import Routes from './components/routing/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ScrollToTop from 'react-router-scroll-top';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
@@ -19,12 +20,14 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
-          <NavBar />
-          <Switch>
-            <Route component={Routes} />
-          </Switch>
-        </Fragment>
+        <ScrollToTop>
+          <Fragment>
+            <NavBar />
+            <Switch>
+              <Route component={Routes} />
+            </Switch>
+          </Fragment>
+        </ScrollToTop>
       </Router>
     </Provider>
   );

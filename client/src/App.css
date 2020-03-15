@@ -108,6 +108,10 @@ body {
   padding: 0.4rem;
 }
 
+.pagination.menu.ui {
+  border: none;
+}
+
 .form .form-group {
   margin: 1.2rem 0;
 }
@@ -179,7 +183,6 @@ p {
   outline: none;
 }
 .btn.btn-back-list {
-  width: 100%;
   max-width: 100px;
   margin: auto;
   padding: 0.4rem;
@@ -189,7 +192,6 @@ p {
 }
 
 .btn.btn-post-delete {
-  width: 100%;
   max-width: 100px;
   margin: auto;
   padding: 0.4rem;
@@ -199,7 +201,6 @@ p {
 }
 
 .btn.btn-post-rewrite {
-  width: 100%;
   max-width: 100px;
   margin: auto;
   padding: 0.4rem;
@@ -211,7 +212,6 @@ p {
 .btn.btn-post-create {
   display: block;
   margin: 10px auto;
-  width: 100%;
   max-width: 100px;
   padding: 0.4rem;
   font-size: 1.2rem;
@@ -259,7 +259,6 @@ p {
 
 .btn.btn-signup {
   display: block;
-  width: 100%;
   max-width: 100px;
   margin: auto;
   padding: 0.4rem;
@@ -269,7 +268,6 @@ p {
 
 .btn.btn-login {
   display: block;
-  width: 100%;
   max-width: 100px;
   margin: auto;
   padding: 0.4rem;

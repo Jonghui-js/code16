@@ -52,7 +52,7 @@ const LogIn = ({ login, isAuthenticated }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' className='btn btn-login' value='Login' />
+        <input type='submit' className='btn btn-login' value='로그인' />
       </form>
       <p className='my-1'>
         아직 계정이 없으신가요? <Link to='/signup'>회원가입</Link>
