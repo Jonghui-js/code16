@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-import { getCurrentPosts, getPosts } from '../../actions/post';
+import { getCurrentPosts } from '../../actions/post';
 import { Pagination } from 'semantic-ui-react';
 
 // post 상태에서 posts, loading 가져오기
@@ -13,7 +13,7 @@ const Posts = ({
   post: {
     posts,
     loading,
-    pagination: { currentPage, currentPosts, totalPages }
+    pagination: { currentPage, currentPosts, totalPages, editing }
   }
 }) => {
   useEffect(() => {
@@ -41,7 +41,7 @@ const Posts = ({
   ];
   */
 
-  return loading ? (
+  return editing ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -56,7 +56,6 @@ const Posts = ({
         <Pagination
           activePage={!currentPage ? 1 : currentPage}
           onPageChange={event => {
-            console.log(event.currentTarget.innerText);
             !event.currentTarget.innerText
               ? getCurrentPosts(1)
               : getCurrentPosts(event.currentTarget.innerText);
@@ -78,7 +77,6 @@ const Posts = ({
 
 Posts.propTypes = {
   getCurrentPosts: PropTypes.func.isRequired,
-  getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
 
@@ -86,4 +84,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getCurrentPosts, getPosts })(Posts);
+export default connect(mapStateToProps, { getCurrentPosts })(Posts);

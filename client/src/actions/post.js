@@ -128,7 +128,6 @@ export const rewritePost = (id, formData) => async dispatch => {
   };
   try {
     const res = await axios.put(`/api/posts/${id}`, formData, config);
-    console.log(res.data);
 
     dispatch({
       type: REWRITE_POST,
@@ -157,8 +156,6 @@ export const addPost = formData => async dispatch => {
       type: ADD_POST,
       payload: res.data
     });
-
-    //dispatch(setAlert('Post Created', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,

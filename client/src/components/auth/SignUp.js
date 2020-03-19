@@ -83,12 +83,11 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             value={email}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'></small>
         </div>
         <div className='form-group'>
           <input
             type='password'
-            placeholder='Password'
+            placeholder='6자 이상 입력하세요'
             name='password'
             value={password}
             onChange={e => onChange(e)}
@@ -97,7 +96,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
         <div className='form-group'>
           <input
             type='password'
-            placeholder='Confirm Password'
+            placeholder='다시 한번 입력해주세요'
             name='password2'
             value={password2}
             onChange={e => onChange(e)}

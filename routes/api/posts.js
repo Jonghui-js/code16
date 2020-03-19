@@ -94,7 +94,6 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/pages/:page', auth, async (req, res) => {
   try {
-    console.log(req.params);
     const currentPage = req.params.page == 'undefined' ? 1 : req.params.page;
     const posts = await Post.find().sort({ date: -1 });
     const totalPosts = posts.length;

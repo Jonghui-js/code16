@@ -1,9 +1,6 @@
 :root {
-  --primary-color: #17a2b8;
-  --dark-color: #343a40;
-  --light-color: #f4f4f4;
+  --primary-color: rgb(73, 207, 207);
   --danger-color: #dc3545;
-  --success-color: #28a745;
 }
 
 * {
@@ -13,14 +10,15 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 
-/* 상단 네비게이션 바*/
+/* 상단 고정 네비게이션*/
 
 .navbar {
-  background-color: lightskyblue;
+  background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +27,7 @@ body {
   z-index: 1;
   width: 100%;
   top: 0;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .navbar ul {
@@ -42,24 +40,23 @@ body {
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
-
 .navbar p {
   color: black;
   display: none;
 }
 
-/*경로값에 따라 보여줄 본문 컨테이너
-  * 패딩 좌우에만 2rem 씩 있음
-*/
+/* 메인 컨테이너*/
 
 .container {
   max-width: 900px;
   font-size: 12px;
   margin: auto;
   padding: 0 2rem;
-  margin-top: 6rem;
+  margin-top: 7rem;
   margin-bottom: 1rem;
 }
+
+/*커뮤니티 페이지*/
 
 .community {
   width: 100%;
@@ -82,7 +79,7 @@ body {
 }
 .community td.title span.mbti-type {
   font-family: 'B612 Mono';
-  background-color: rgb(138, 231, 222);
+  background-color: var(--primary-color);
   font-weight: bold;
   color: black;
   margin-right: 3px;
@@ -100,42 +97,35 @@ body {
   text-align: right;
 }
 
+.community a {
+  color: black;
+}
+.community a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+/* 페이지네이션 */
+
 .pagination {
   margin: 10px auto;
-  font-size: 7px;
   display: block;
   width: fit-content;
-  padding: 0.4rem;
 }
 
 .pagination.menu.ui {
   border: none;
+  background-color: white;
 }
 
-.form .form-group {
-  margin: 1.2rem 0;
+.pagination.menu.ui a {
+  color: var(--primary-color);
 }
 
-.signup {
-  width: 100%;
-  margin: 0;
-  /* background-color: mediumblue; */
-}
+/* 폼 */
 
-.signup h1,
-p {
+.signup h1 {
   text-align: center;
-}
-
-.login h1,
-p {
-  text-align: center;
-}
-
-.form .form-text {
-  display: block;
-  margin-top: 0.3rem;
-  color: #888;
 }
 
 .signup .form input[type='text'],
@@ -154,7 +144,6 @@ p {
 
 .signup .form select {
   display: block;
-
   width: 150px;
   margin: auto;
   padding: 0.4rem;
@@ -162,60 +151,39 @@ p {
   border: 1px solid black;
 }
 
-.community a {
-  color: black;
-}
-.community a:hover {
-  text-decoration: underline;
-  color: black;
+.login h1,
+p {
+  text-align: center;
 }
 
 .btn {
   display: inline-block;
-  background: lightskyblue;
+  background: var(--primary-color);
   color: black;
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   border: none;
   cursor: pointer;
   margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
-  outline: none;
-}
-.btn.btn-back-list {
-  max-width: 100px;
-  margin: auto;
-  padding: 0.4rem;
-  font-size: 1.2rem;
   border: 1px solid black;
-  margin-top: 20px;
 }
-
-.btn.btn-post-delete {
-  max-width: 100px;
-  margin: auto;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
-.btn.btn-post-rewrite {
-  max-width: 100px;
-  margin: auto;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
 .btn.btn-post-create {
   display: block;
   margin: 10px auto;
+  font-size: 1.2rem;
+}
+.btn.btn-back-list {
   max-width: 100px;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid black;
+}
+.btn.btn-post-delete {
+  padding: 0.4rem;
+  font-size: 1.2rem;
+}
+.btn.btn-post-rewrite {
+  padding: 0.4rem;
+  font-size: 1.2rem;
 }
 
 .btn.btn-comment-create {
@@ -223,7 +191,7 @@ p {
   width: 12%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid black;
+
   min-height: 107px;
   margin-left: 5px;
 }
@@ -242,7 +210,7 @@ p {
 
 .comment-meta .mbti-type {
   font-family: 'B612 Mono';
-  background-color: rgb(138, 231, 222);
+  background-color: var(--primary-color);
   font-weight: bold;
   color: black;
   margin-right: 3px;
@@ -257,52 +225,19 @@ p {
   background-color: white;
 }
 
-.btn.btn-signup {
-  display: block;
-  max-width: 100px;
-  margin: auto;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid black;
-}
-
+.btn.btn-signup,
 .btn.btn-login {
   display: block;
-  max-width: 100px;
   margin: auto;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid black;
 }
+
 /*  alert */
 
 .alert {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
   color: #333;
-}
-.alert-primary {
-  background: var(--primary-color);
-  color: #fff;
-}
-.alert-light {
-  background: var(--light-color);
-  color: #333;
-}
-.alert-dark {
-  background: var(--dark-color);
-  color: #fff;
-}
-.alert-success {
-  background: var(--success-color);
-  color: #fff;
-}
-.alert-white {
-  background: #fff;
-  color: #333;
-  border: #ccc solid 1px;
 }
 .alert-danger {
   background: var(--danger-color);
@@ -322,7 +257,7 @@ p {
   overflow-wrap: break-word;
   display: block;
   width: 100%;
-  min-height: 500px;
+  min-height: 300px;
   font-size: 15px;
   padding: 10px;
   margin-bottom: 10px;
@@ -366,26 +301,32 @@ p {
   color: black;
   background-color: rgb(138, 231, 222);
 }
-@media (max-width: 700px) {
-  /* Navbar */
 
+/* 마이페이지 */
+span.contents-number {
+  margin-left: 5px;
+  color: red;
+}
+
+@media (max-width: 700px) {
+  /* 네비게이션이 밑으로 쌓이게 */
   .container {
-    margin-top: 10rem;
+    margin-top: 12rem;
   }
   .navbar {
     display: block;
     text-align: center;
   }
-
   .navbar ul {
     text-align: center;
     justify-content: center;
   }
-
   .navbar p {
     display: block;
+    text-align: center;
   }
 
+  /* 폰트사이즈를 더 작게 */
   .community td.title {
     font-size: 12px;
   }
@@ -393,11 +334,3 @@ p {
     font-size: 12px;
   }
 }
-
-/*
-@media (prefers-color-scheme: dark) {
-  body {
-    background: black;
-  }
-}
-*/

@@ -10,7 +10,10 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/posts'>커뮤니티</Link>
+        <Link to='/posts'>Community</Link>
+      </li>
+      <li>
+        <Link to='/mypage'>My Page</Link>
       </li>
       <li>
         <a href='/' onClick={logout}>
