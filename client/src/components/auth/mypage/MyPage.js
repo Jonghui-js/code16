@@ -20,8 +20,8 @@ const MyPage = ({
     <Spinner />
   ) : (
     <>
-      <Header dividing>
-        ID: {name} / MBTI: {mbti}
+      <Header as='h3' textAlign='center' dividing>
+        [{name}]님의 MBTI 유형은 [{mbti}]
       </Header>
       <Menu widths={2}>
         <Menu.Item>

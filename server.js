@@ -17,6 +17,8 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/mypage', require('./routes/api/mypage'));
 
 // static assets in production
+
+console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', (req, res) => {

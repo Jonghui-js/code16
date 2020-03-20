@@ -14,6 +14,26 @@ body {
   align-items: center;
   background-color: white;
 }
+/*
+  const mbtiType = [
+    'ISTJ',
+    'ISFJ',
+    'INFJ',
+    'INTJ',
+    'ISTP',
+    'ISFP',
+    'INFP',
+    'INTP',
+    'ESTP',
+    'ESFP',
+    'ENFP',
+    'ENTP',
+    'ESTJ',
+    'ESFJ',
+    'ENFJ',
+    'ENTJ'
+  ];
+  */
 
 /* 상단 고정 네비게이션*/
 

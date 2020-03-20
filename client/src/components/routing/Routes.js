@@ -23,13 +23,12 @@ const Routes = () => {
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/login' component={LogIn} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
-        <PrivateRoute exact path='/posts' component={Posts} />
+        <Route exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/create-post' component={PostForm} />
         <PrivateRoute exact path='/posts/rewrite/:id' component={RePost} />
         <PrivateRoute exact path='/mypage' component={MyPage} />
         <PrivateRoute exact path='/mypage/myposts' component={MyPosts} />
         <PrivateRoute exact path='/mypage/mycomments' component={MyComments} />
-
         <Route component={NotFound} />
       </Switch>
     </section>

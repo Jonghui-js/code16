@@ -80,7 +80,7 @@ router.put(
 );
 
 //글목록 가져오기.
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
@@ -92,7 +92,7 @@ router.get('/', auth, async (req, res) => {
 
 // 현재페이지 글 가져오기
 
-router.get('/pages/:page', auth, async (req, res) => {
+router.get('/pages/:page', async (req, res) => {
   try {
     const currentPage = req.params.page == 'undefined' ? 1 : req.params.page;
     const posts = await Post.find().sort({ date: -1 });
@@ -154,9 +154,7 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-//@route    Post api/posts/comment/:id
-//@decs     Comment on a post
-//@access   Private
+//댓글달기
 router.post(
   '/comment/:id',
   [
@@ -194,9 +192,7 @@ router.post(
   }
 );
 
-//@route    DELETE api/posts/comment/:id/:comment_id
-//@decs     Delete comment
-//@access   Private
+//댓글 삭제하기
 
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {

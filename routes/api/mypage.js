@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 
-//내 글 가져오기
+//내 글, 댓글 가져오기
 router.get('/:name', auth, async (req, res) => {
   try {
     const myposts = await Post.find({ name: req.params.name }).sort({
@@ -32,7 +32,7 @@ router.get('/:name', auth, async (req, res) => {
   }
 });
 
-//계정 삭제
+//계정 삭제하기
 router.delete('/', auth, async (req, res) => {
   try {
     await Post.deleteMany({ user: req.user.id });
