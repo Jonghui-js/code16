@@ -11,7 +11,6 @@ import { Pagination } from 'semantic-ui-react';
 const Posts = ({
   getCurrentPosts,
   post: {
-    posts,
     loading,
     pagination: { currentPage, currentPosts, totalPages, editing }
   }
@@ -20,7 +19,7 @@ const Posts = ({
     getCurrentPosts(currentPage);
   }, [getCurrentPosts, currentPage]);
 
-  return editing ? (
+  return editing || loading ? (
     <Spinner />
   ) : (
     <Fragment>

@@ -60,7 +60,7 @@ export const signup = ({ name, email, password, mbti }) => async dispatch => {
   }
 };
 
-//login user
+//Login user - 로그인하기
 
 export const login = (email, password) => async dispatch => {
   const config = {
@@ -90,7 +90,7 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
-//logout / clear profile
+//logout
 
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });

@@ -1,13 +1,14 @@
 import {
   GET_MY_CONTENTS,
   UPDATE_USER,
-  CLEAR_USER,
-  GET_USER_ERROR
+  CLEAR_MYPAGE,
+  GET_USER_ERROR,
+  MYPAGE_ERROR
 } from '../actions/types';
 
 const initialState = {
-  myposts: [],
-  mycomments: [],
+  myposts: null,
+  mycomments: null,
   loading: true,
   error: {}
 };
@@ -27,7 +28,7 @@ export default function(state = initialState, action) {
         ...state,
         loading: false
       };
-    case CLEAR_USER:
+    case CLEAR_MYPAGE:
       return {
         ...state,
         myposts: null,
@@ -35,6 +36,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_USER_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case MYPAGE_ERROR:
       return {
         ...state,
         error: payload,

@@ -1,13 +1,26 @@
 import React from 'react';
-import { Message } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
-const MyComments = () => {
+const MyComments = ({ mypage: { mycomments } }) => {
   return (
-    <Message negative>
-      <Message.Header>
-        이 기능은 아직 준비중입니다. 조금만 기다려주세요.
-      </Message.Header>
-    </Message>
+    <>
+      <table className='community'>
+        <tbody>
+          {mycomments.map(post => (
+            <tr className='list' key={post._id}>
+              <td className='title'>
+                <Link to={`/posts/${post._id}`}>{post.comments[0].text}</Link>
+              </td>
+              <td className='date'>
+                <Moment format='YYYY/MM/DD'>{post.comments[0].date}</Moment>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
@@ -36,4 +49,9 @@ const mapStateToProps = state => ({
 });
 */
 
-export default MyComments;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  mypage: state.mypage
+});
+
+export default connect(mapStateToProps, {})(MyComments);

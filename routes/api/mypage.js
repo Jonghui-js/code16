@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 
-//내 글, 댓글 가져오기
+//GET all my contents - 내 글, 댓글 가져오기
 router.get('/:name', auth, async (req, res) => {
   try {
     const myposts = await Post.find({ name: req.params.name }).sort({
@@ -19,7 +19,11 @@ router.get('/:name', auth, async (req, res) => {
         comments: { $elemMatch: { name: req.params.name } }
       },
       {
-        comments: true
+        comments: {
+          $elemMatch: { name: req.params.name }
+        },
+        'comments.text': true,
+        'comments.date': true
       }
     ).sort({
       date: -1
@@ -32,7 +36,7 @@ router.get('/:name', auth, async (req, res) => {
   }
 });
 
-//계정 삭제하기
+//DELETE user - 계정 삭제하기
 router.delete('/', auth, async (req, res) => {
   try {
     await Post.deleteMany({ user: req.user.id });

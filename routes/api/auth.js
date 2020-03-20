@@ -30,8 +30,8 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/',
   [
-    check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('email', '유효한 이메일이 아닙니다.').isEmail(),
+    check('password', '비밀번호를 입력하세요').exists()
   ],
   async (req, res) => {
     const errors = validationResult(req);

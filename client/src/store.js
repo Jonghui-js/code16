@@ -4,8 +4,6 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {};
-
-//비동기적으로
 const middleware = [thunk];
 
 const store = createStore(

@@ -37,7 +37,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
     <div className='signup'>
       <h1>회원 가입</h1>
       <p>
-        <Icon name='signup'></Icon> 16log 에서는 MBTI 유형과 ID로 소통합니다.
+        <Icon name='signup'></Icon> code16 에서는 MBTI 유형과 ID로 소통합니다.
       </p>
 
       <form className='form' onSubmit={e => onSubmit(e)}>

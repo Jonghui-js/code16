@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { Link, withRouter } from 'react-router-dom';
-import { getPost, deletePost, rewritePost } from '../../actions/post';
+import { getPost, deletePost } from '../../actions/post';
 import { Header, Divider, Button, Modal, Icon } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import CommentForm from './CommentForm';
@@ -93,7 +93,7 @@ const Post = ({
               </Button>
             </Modal.Actions>
           </Modal>
-          <Link to={`/posts/rewrite/${post._id}`}>
+          <Link to={`/posts/update/${post._id}`}>
             <button className='btn btn-post-rewrite'>수정</button>
           </Link>
         </>
@@ -106,13 +106,12 @@ Post.propTypes = {
   getPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
-  deletePost: PropTypes.func.isRequired,
-  rewritePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   post: state.post,
   auth: state.auth
 });
-export default connect(mapStateToProps, { getPost, deletePost, rewritePost })(
+export default connect(mapStateToProps, { getPost, deletePost })(
   withRouter(Post)
 );

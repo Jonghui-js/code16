@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 
-//글올리기 /create-post component={PostForm}
+//Post post - 글 작성하기
 
 router.post(
   '/',
@@ -46,7 +46,7 @@ router.post(
   }
 );
 
-//글 수정하기
+//UPDATE post - 글 수정하기
 router.put(
   '/:id',
   [
@@ -79,7 +79,7 @@ router.put(
   }
 );
 
-//글목록 가져오기.
+//GET all posts - 모든 글 가져오기
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
@@ -90,7 +90,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 현재페이지 글 가져오기
+//GET posts by current page - 현재 페이지 글 가져오기
 
 router.get('/pages/:page', async (req, res) => {
   try {
@@ -110,9 +110,7 @@ router.get('/pages/:page', async (req, res) => {
   }
 });
 
-module.exports = router;
-
-//하나의 글을 가져오기.
+//GET a post - 글 하나 가져오기
 
 router.get('/:id', auth, async (req, res) => {
   try {
@@ -130,7 +128,7 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-//내글 삭제하기
+//DELETE post - 내 글 삭제하기
 router.delete('/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -154,7 +152,7 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-//댓글달기
+//POST comment - 댓글 달기
 router.post(
   '/comment/:id',
   [
@@ -192,7 +190,7 @@ router.post(
   }
 );
 
-//댓글 삭제하기
+//DELETE comment - 댓글 삭제하기
 
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {

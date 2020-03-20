@@ -7,8 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-//회원가입
-
+//POST signup form - 회원 가입하기
 router.post(
   '/',
   [
@@ -34,14 +33,19 @@ router.post(
 
     try {
       //see if user exists
-      let user = await User.findOne({ email });
-      if (user) {
+      let existingEmail = await User.findOne({ email });
+      let existingName = await User.findOne({ name });
+      if (existingEmail) {
         return res
           .status(400)
           .json({ errors: [{ msg: '같은 이메일 계정이 이미 존재합니다' }] });
       }
+      if (existingName) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: '같은 ID 계정이 이미 존재합니다' }] });
+      }
 
-      //생성만 하고 저장은 안함
       user = new User({
         name,
         email,
@@ -49,14 +53,11 @@ router.post(
         password
       });
 
-      //Encrypt password
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
-      //비번을 해쉬해서 디비에 저장함
       await user.save();
 
-      //return jsonwebtoken.
       const payload = {
         user: {
           id: user.id

@@ -6,7 +6,7 @@ import MyPage from '../auth/mypage/MyPage';
 import Alert from '../layout/Alert';
 import Posts from '../posts/Posts';
 import Post from '../posts/Post';
-import RePost from '../posts/RePost';
+import UpdatePost from '../posts/UpdatePost';
 import PostForm from '../posts/PostForm';
 import MyPosts from '../auth/mypage/MyPosts';
 import MyComments from '../auth/mypage/MyComments';
@@ -25,7 +25,7 @@ const Routes = () => {
         <PrivateRoute exact path='/posts/:id' component={Post} />
         <Route exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/create-post' component={PostForm} />
-        <PrivateRoute exact path='/posts/rewrite/:id' component={RePost} />
+        <PrivateRoute exact path='/posts/update/:id' component={UpdatePost} />
         <PrivateRoute exact path='/mypage' component={MyPage} />
         <PrivateRoute exact path='/mypage/myposts' component={MyPosts} />
         <PrivateRoute exact path='/mypage/mycomments' component={MyComments} />

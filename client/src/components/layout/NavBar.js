@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
-//로그인한 경우에 보여줄 네비게이션 링크
+// useMemo 사용하기
 const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
@@ -16,7 +16,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to='/mypage'>My Page</Link>
       </li>
       <li>
-        <a href='/' onClick={logout}>
+        <a href='/login' onClick={logout}>
           <Icon name='log out'></Icon>
         </a>
       </li>
@@ -41,7 +41,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar'>
       <h1>
         <Link to='/'>
-          <Icon name='qq' /> 16 log
+          <Icon name='qq' /> CODE16
         </Link>
       </h1>
       <p>16가지 MBTI 커뮤니티</p>

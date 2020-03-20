@@ -1,18 +1,16 @@
 import axios from 'axios';
 import {
-  GET_POSTS,
   POST_ERROR,
-  UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  REWRITE_POST,
+  UPDATE_POST,
   GET_CURRENTPOSTS
 } from './types';
 
-//GET Posts -> 제목 추가해야함
+/*GET Posts -> 페이지네이션으로 변경
 export const getPosts = () => async dispatch => {
   try {
     const res = await axios.get(`/api/posts`);
@@ -28,8 +26,9 @@ export const getPosts = () => async dispatch => {
     });
   }
 };
+*/
 
-//GET Post
+// GET Post - 개별 포스트 클릭해서 가져오기
 export const getPost = id => async dispatch => {
   try {
     const res = await axios.get(`/api/posts/${id}`);
@@ -46,7 +45,7 @@ export const getPost = id => async dispatch => {
   }
 };
 
-//GET current Posts !!!!!!!! 페이지네이션
+//GET current Posts - 현재 페이지 가져오기 - 디폴트 1
 
 export const getCurrentPosts = page => async dispatch => {
   try {
@@ -64,84 +63,7 @@ export const getCurrentPosts = page => async dispatch => {
   }
 };
 
-//add like
-
-export const addLike = id => async dispatch => {
-  try {
-    const res = await axios.put(`/api/posts/like/${id}`);
-
-    dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-//Remove like
-
-export const removeLike = id => async dispatch => {
-  try {
-    const res = await axios.put(`/api/posts/unlike/${id}`);
-
-    dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-//delete post
-
-export const deletePost = id => async dispatch => {
-  try {
-    await axios.delete(`/api/posts/${id}`);
-
-    dispatch({
-      type: DELETE_POST,
-      payload: id
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-//글 수정하기.
-
-export const rewritePost = (id, formData) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-  try {
-    const res = await axios.put(`/api/posts/${id}`, formData, config);
-
-    dispatch({
-      type: REWRITE_POST,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-//add post
+//Add post - 글 작성하기
 
 export const addPost = formData => async dispatch => {
   const config = {
@@ -164,7 +86,48 @@ export const addPost = formData => async dispatch => {
   }
 };
 
-//add comment
+//UPDATE post - 글 수정하기
+
+export const updatePost = (id, formData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await axios.put(`/api/posts/${id}`, formData, config);
+
+    dispatch({
+      type: UPDATE_POST,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Delete post - 글 삭제하기
+
+export const deletePost = id => async dispatch => {
+  try {
+    await axios.delete(`/api/posts/${id}`);
+
+    dispatch({
+      type: DELETE_POST,
+      payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Add comment - 댓글 달기
 
 export const addComment = (postId, formData) => async dispatch => {
   const config = {
@@ -191,7 +154,7 @@ export const addComment = (postId, formData) => async dispatch => {
   }
 };
 
-//delete comment
+//Delete comment - 댓글 삭제하기
 
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {

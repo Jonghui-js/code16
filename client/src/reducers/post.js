@@ -1,20 +1,17 @@
 import {
-  GET_POSTS,
   POST_ERROR,
-  UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  REWRITE_POST,
+  UPDATE_POST,
   GET_CURRENTPOSTS
 } from '../actions/types';
 
 const initialState = {
-  posts: [],
   post: null,
-  loading: false,
+  loading: true,
   editing: false,
   error: {},
   pagination: { currentPage: 1, currentPosts: [], totalPages: 10 }
@@ -23,14 +20,6 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_POSTS:
-      return {
-        ...state,
-        post: null,
-        posts: payload,
-        loading: false,
-        editing: false
-      };
     case GET_CURRENTPOSTS:
       return {
         ...state,
@@ -40,7 +29,8 @@ export default function(state = initialState, action) {
           currentPage: payload.currentPage,
           currentPosts: payload.currentPosts,
           totalPages: payload.totalPages
-        }
+        },
+        loading: false
       };
     case GET_POST:
       return {
@@ -59,7 +49,6 @@ export default function(state = initialState, action) {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== payload),
         editing: false,
         loading: false
       };
@@ -69,22 +58,10 @@ export default function(state = initialState, action) {
         error: payload,
         loading: false
       };
-    case REWRITE_POST:
+    case UPDATE_POST:
       return {
         ...state,
-        posts: [
-          payload,
-          ...state.posts.filter(post => post._id !== payload._id)
-        ],
         editing: false
-      };
-    case UPDATE_LIKES:
-      return {
-        ...state,
-        posts: state.posts.map(post =>
-          post._id === payload.id ? { ...post, likes: payload.likes } : post
-        ),
-        loading: false
       };
     case ADD_COMMENT:
       return {

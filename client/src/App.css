@@ -14,29 +14,10 @@ body {
   align-items: center;
   background-color: white;
 }
-/*
-  const mbtiType = [
-    'ISTJ',
-    'ISFJ',
-    'INFJ',
-    'INTJ',
-    'ISTP',
-    'ISFP',
-    'INFP',
-    'INTP',
-    'ESTP',
-    'ESFP',
-    'ENFP',
-    'ENTP',
-    'ESTJ',
-    'ESFJ',
-    'ENFJ',
-    'ENTJ'
-  ];
-  */
+
+/* 메인 페이지 노션 css */
 
 /* 상단 고정 네비게이션*/
-
 .navbar {
   background-color: var(--primary-color);
   display: flex;
@@ -328,6 +309,18 @@ span.contents-number {
   color: red;
 }
 
+.delete-account {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.ui.segment.myInfo {
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  background-color: var(--primary-color);
+}
 @media (max-width: 700px) {
   /* 네비게이션이 밑으로 쌓이게 */
   .container {
