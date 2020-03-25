@@ -12,7 +12,10 @@ import { getMyContents, deleteAccount } from '../../../actions/mypage';
 import Spinner from '../../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Route, NavLink } from 'react-router-dom';
+import MyPosts from './MyPosts';
+import MyComments from './MyComments';
+import PrivateRoute from '../../routing/PrivateRoute';
 
 const MyPage = ({
   auth: {
@@ -40,18 +43,21 @@ const MyPage = ({
       <Divider />
       <Menu widths={2} className='mycontents'>
         <Menu.Item>
-          <Link to='/mypage/myposts'>
+          <NavLink to='/mypage/myposts'>
             내가 쓴 글<span className='contents-number'>{myposts.length}</span>
-          </Link>
+          </NavLink>
         </Menu.Item>
         <Menu.Item>
-          <Link to='/mypage/mycomments'>
+          <NavLink to='/mypage/mycomments'>
             내가 쓴 댓글
             <span className='contents-number'>{mycomments.length}</span>
-          </Link>
+          </NavLink>
         </Menu.Item>
       </Menu>
-
+      <main>
+        <Route exact={true} path='/mypage/myposts' component={MyPosts} />
+        <Route exact={true} path='/mypage/mycomments' component={MyComments} />
+      </main>
       <Modal
         trigger={
           <Button

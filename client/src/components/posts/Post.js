@@ -19,7 +19,7 @@ const Post = ({
 }) => {
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost]);
+  }, [getPost, match.params.id]);
 
   const [modal, setModal] = useState({ open: false });
 
@@ -30,7 +30,8 @@ const Post = ({
       <Header as='h3'>
         {post.title}
         <Header.Subheader className='post-name'>
-          <span>{post.mbti}</span>&nbsp;{post.name} &nbsp;
+          <span className={`${post.mbti} mbti-type`}>{post.mbti}</span>&nbsp;
+          {post.name} &nbsp;
           <Moment format='YYYY/MM/DD HH:mm'>{post.date}</Moment>
         </Header.Subheader>
       </Header>

@@ -11,10 +11,8 @@ import {
 
 const initialState = {
   post: null,
-  loading: true,
   editing: false,
-  error: {},
-  pagination: { currentPage: 1, currentPosts: [], totalPages: 10 }
+  error: {}
 };
 
 export default function(state = initialState, action) {
@@ -23,40 +21,27 @@ export default function(state = initialState, action) {
     case GET_CURRENTPOSTS:
       return {
         ...state,
-        post: null,
-        pagination: {
-          ...state.pagination,
-          currentPage: payload.currentPage,
-          currentPosts: payload.currentPosts,
-          totalPages: payload.totalPages
-        },
-        loading: false
+        post: null
       };
     case GET_POST:
       return {
         ...state,
         post: payload,
-        loading: false,
         editing: true
       };
     case ADD_POST:
       return {
-        ...state,
-        /* [...state.posts, payload] 로 하면 최신글이 밑으로 깔림 */
-        posts: [payload, ...state.posts],
-        loading: false
+        ...state
       };
     case DELETE_POST:
       return {
         ...state,
-        editing: false,
-        loading: false
+        editing: false
       };
     case POST_ERROR:
       return {
         ...state,
-        error: payload,
-        loading: false
+        error: payload
       };
     case UPDATE_POST:
       return {
@@ -66,8 +51,7 @@ export default function(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        post: { ...state.post, comments: payload },
-        loading: false
+        post: { ...state.post, comments: payload }
       };
     case REMOVE_COMMENT:
       return {
@@ -77,8 +61,7 @@ export default function(state = initialState, action) {
           comments: state.post.comments.filter(
             comment => comment._id !== payload
           )
-        },
-        loading: false
+        }
       };
     default:
       return state;

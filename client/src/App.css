@@ -15,7 +15,79 @@ body {
   background-color: white;
 }
 
-/* 메인 페이지 노션 css */
+/* 메인 페이지 */
+.statistic {
+  margin-top: 8rem;
+}
+/*
+  const mbtiType = [
+    'ISTJ',
+    'ISFJ',
+    'INFJ',
+    'INTJ',
+    'ISTP',
+    'ISFP',
+    'INFP',
+    'INTP',
+    'ESTP',
+    'ESFP',
+    'ENFP',
+    'ENTP',
+    'ESTJ',
+    'ESFJ',
+    'ENFJ',
+    'ENTJ'
+  ];
+  */
+
+.ui.statistics .ISTJ .value {
+  color: blue;
+}
+.ui.statistics .ISFJ .value {
+  color: brown;
+}
+.ui.statistics .INFJ .value {
+  color: green;
+}
+.ui.statistics .INTJ .value {
+  color: grey;
+}
+.ui.statistics .ISTP .value {
+  color: olive;
+}
+.ui.statistics .ISFP .value {
+  color: orange;
+}
+.ui.statistics .INFP .value {
+  color: pink;
+}
+.ui.statistics .INTP .value {
+  color: purple;
+}
+.ui.statistics .ESTP .value {
+  color: red;
+}
+.ui.statistics .ESFP .value {
+  color: teal;
+}
+.ui.statistics .ENFP .value {
+  color: violet;
+}
+.ui.statistics .ENTP .value {
+  color: yellow;
+}
+.ui.statistics .ESTJ .value {
+  color: black;
+}
+.ui.statistics .ESFJ .value {
+  color: yellowgreen;
+}
+.ui.statistics .ENFJ .value {
+  color: skyblue;
+}
+.ui.statistics .ENTJ .value {
+  color: tomato;
+}
 
 /* 상단 고정 네비게이션*/
 .navbar {
@@ -78,14 +150,72 @@ body {
   padding: 0 10px 0 0px;
   line-height: 120%;
 }
-.community td.title span.mbti-type {
+/* 태그 필터링 칼라 */
+.community td.title .mbti-type {
   font-family: 'B612 Mono';
-  background-color: var(--primary-color);
   font-weight: bold;
   color: black;
-  margin-right: 3px;
   padding: 1.5px;
+  margin-right: 3px;
 }
+
+.community td.title .ISTJ {
+  background-color: blue;
+  color: aliceblue;
+}
+.community td.title .ISFJ {
+  background-color: brown;
+  color: aliceblue;
+}
+.community td.title .INFJ {
+  background-color: green;
+  color: aliceblue;
+}
+.community td.title .INTJ {
+  background-color: gray;
+  color: aliceblue;
+}
+.community td.title .ISTP {
+  background-color: olive;
+}
+.community td.title .ISFP {
+  background-color: orange;
+}
+.community td.title .INFP {
+  background-color: pink;
+}
+.community td.title .INTP {
+  background-color: purple;
+  color: aliceblue;
+}
+.community td.title .ESTP {
+  background-color: red;
+  color: aliceblue;
+}
+.community td.title .ESFP {
+  background-color: teal;
+}
+.community td.title .ENFP {
+  background-color: violet;
+}
+.community td.title .ENTP {
+  background-color: yellow;
+}
+.community td.title .ESTJ {
+  background-color: black;
+  color: aliceblue;
+}
+.community td.title .ESFJ {
+  background-color: yellowgreen;
+}
+.community td.title .ENFJ {
+  background-color: skyblue;
+}
+.community td.title .ENTJ {
+  background-color: tomato;
+  color: aliceblue;
+}
+
 .community td.title span.comments {
   margin-left: 3px;
 }
@@ -297,10 +427,68 @@ p {
   padding: 3px;
 }
 
+/*
 .post-name span {
   padding: 1px;
   color: black;
   background-color: rgb(138, 231, 222);
+}*/
+
+.post-name .ISTJ {
+  background-color: blue;
+  color: aliceblue;
+}
+.post-name .ISFJ {
+  background-color: brown;
+  color: aliceblue;
+}
+.post-name .INFJ {
+  background-color: green;
+  color: aliceblue;
+}
+.post-name .INTJ {
+  background-color: gray;
+  color: aliceblue;
+}
+.post-name .ISTP {
+  background-color: olive;
+}
+.post-name .ISFP {
+  background-color: orange;
+}
+.post-name .INFP {
+  background-color: pink;
+}
+.post-name .INTP {
+  background-color: purple;
+  color: aliceblue;
+}
+.post-name .ESTP {
+  background-color: red;
+  color: aliceblue;
+}
+.post-name .ESFP {
+  background-color: teal;
+}
+.post-name .ENFP {
+  background-color: violet;
+}
+.post-name .ENTP {
+  background-color: yellow;
+}
+.post-name .ESTJ {
+  background-color: black;
+  color: aliceblue;
+}
+.post-name .ESFJ {
+  background-color: yellowgreen;
+}
+.post-name .ENFJ {
+  background-color: skyblue;
+}
+.post-name .ENTJ {
+  background-color: tomato;
+  color: aliceblue;
 }
 
 /* 마이페이지 */

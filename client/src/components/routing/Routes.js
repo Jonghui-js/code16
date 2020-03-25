@@ -8,10 +8,10 @@ import Posts from '../posts/Posts';
 import Post from '../posts/Post';
 import UpdatePost from '../posts/UpdatePost';
 import PostForm from '../posts/PostForm';
-import MyPosts from '../auth/mypage/MyPosts';
-import MyComments from '../auth/mypage/MyComments';
+//import MyPosts from '../auth/mypage/MyPosts';
+//import MyComments from '../auth/mypage/MyComments';
 import PrivateRoute from './PrivateRoute';
-import Landing from '../layout/Landing';
+import Main from '../layout/Main';
 import NotFound from '../layout/NotFound';
 
 const Routes = () => {
@@ -19,16 +19,14 @@ const Routes = () => {
     <section className='container'>
       <Alert />
       <Switch>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' component={Main} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/login' component={LogIn} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
         <Route exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/create-post' component={PostForm} />
         <PrivateRoute exact path='/posts/update/:id' component={UpdatePost} />
-        <PrivateRoute exact path='/mypage' component={MyPage} />
-        <PrivateRoute exact path='/mypage/myposts' component={MyPosts} />
-        <PrivateRoute exact path='/mypage/mycomments' component={MyComments} />
+        <PrivateRoute path='/mypage' component={MyPage} />
         <Route component={NotFound} />
       </Switch>
     </section>

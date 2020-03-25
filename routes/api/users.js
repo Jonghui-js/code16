@@ -81,4 +81,119 @@ router.post(
   }
 );
 
+/*
+  const mbtiType = [
+    'ISTJ',
+    'ISFJ',
+    'INFJ',
+    'INTJ',
+    'ISTP',
+    'ISFP',
+    'INFP',
+    'INTP',
+    'ESTP',
+    'ESFP',
+    'ENFP',
+    'ENTP',
+    'ESTJ',
+    'ESFJ',
+    'ENFJ',
+    'ENTJ'
+  ];
+  */
+
+/*
+router.get('/', async (req, res) => {
+  const users = await User.find({}, { mbti: 1 });
+  console.log(users);
+
+  let ISTJ = 0;
+  let ISFJ = 0;
+  let INFJ = 0;
+  let INTJ = 0;
+  let ISTP = 0;
+  let ISFP = 0;
+  let INFP = 0;
+  let INTP = 0;
+  let ESTP = 0;
+  let ESFP = 0;
+  let ENFP = 0;
+  let ENTP = 0;
+  let ESTJ = 0;
+  let ESFJ = 0;
+  let ENFJ = 0;
+  let ENTJ = 0;
+
+  await users.map(user => {
+    if (user.mbti === 'ISTJ') {
+      ISTJ += 1;
+    }
+    if (user.mbti === 'ISFJ') {
+      ISFJ += 1;
+    }
+    if (user.mbti === 'INFJ') {
+      INFJ += 1;
+    }
+    if (user.mbti === 'INTJ') {
+      INTJ += 1;
+    }
+    if (user.mbti === 'ISTP') {
+      ISTP += 1;
+    }
+    if (user.mbti === 'ISFP') {
+      ISFP += 1;
+    }
+    if (user.mbti === 'INFP') {
+      INFP += 1;
+    }
+    if (user.mbti === 'INTP') {
+      INTP += 1;
+    }
+    if (user.mbti === 'ESTP') {
+      ESTP += 1;
+    }
+    if (user.mbti === 'ESFP') {
+      ESFP += 1;
+    }
+    if (user.mbti === 'ENFP') {
+      ENFP += 1;
+    }
+    if (user.mbti === 'ENTP') {
+      ENTP += 1;
+    }
+    if (user.mbti === 'ESTJ') {
+      ESTJ += 1;
+    }
+    if (user.mbti === 'ESFJ') {
+      ESFJ += 1;
+    }
+    if (user.mbti === 'ENFJ') {
+      ENFJ += 1;
+    }
+    if (user.mbti === 'ENTJ') {
+      ENTJ += 1;
+    }
+  });
+
+  const mbti = {
+    ISTJ,
+    ISFJ,
+    INFJ,
+    INTJ,
+    ISTP,
+    ISFP,
+    INFP,
+    INTP,
+    ESTP,
+    ESFP,
+    ENFP,
+    ENTP,
+    ESTJ,
+    ESFJ,
+    ENFJ,
+    ENTJ
+  };
+  res.status(200).json(mbti);
+});
+*/
 module.exports = router;

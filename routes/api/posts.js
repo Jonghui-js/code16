@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
-
 const Post = require('../../models/Post');
 const User = require('../../models/User');
-
-//Post post - 글 작성하기
 
 router.post(
   '/',
@@ -46,7 +43,6 @@ router.post(
   }
 );
 
-//UPDATE post - 글 수정하기
 router.put(
   '/:id',
   [
@@ -79,38 +75,33 @@ router.put(
   }
 );
 
-//GET all posts - 모든 글 가져오기
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
-    res.json(posts);
+    const mbti = req.query.mbti ? req.query.mbti.toUpperCase() : req.query.mbti;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 15;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const posts = await (!mbti
+      ? Post.find().sort({ date: -1 })
+      : Post.find({ mbti: mbti }).sort({ date: -1 }));
+    const total = Math.ceil(posts.length / limit);
+    const currentPosts = await (!mbti
+      ? Post.find()
+          .sort({ date: -1 })
+          .skip(startIndex)
+          .limit(limit)
+      : Post.find({ mbti: mbti })
+          .sort({ date: -1 })
+          .skip(startIndex)
+          .limit(limit));
+    const loading = false;
+    res.status(200).json({ currentPosts, total, loading });
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server error');
   }
 });
-
-//GET posts by current page - 현재 페이지 글 가져오기
-
-router.get('/pages/:page', async (req, res) => {
-  try {
-    const currentPage = req.params.page == 'undefined' ? 1 : req.params.page;
-    const posts = await Post.find().sort({ date: -1 });
-    const totalPosts = posts.length;
-    const totalPages = Math.ceil(totalPosts / 15);
-    const currentPosts = await Post.find()
-      .sort({ date: -1 })
-      .skip((currentPage - 1) * 15)
-      .limit(15);
-
-    res.json({ totalPages, currentPosts, currentPage });
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send('Server error');
-  }
-});
-
-//GET a post - 글 하나 가져오기
 
 router.get('/:id', auth, async (req, res) => {
   try {
@@ -128,7 +119,6 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-//DELETE post - 내 글 삭제하기
 router.delete('/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -152,7 +142,6 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-//POST comment - 댓글 달기
 router.post(
   '/comment/:id',
   [
@@ -182,15 +171,13 @@ router.post(
       post.comments.unshift(newComment);
 
       await post.save();
-      res.json(post.comments);
+      res.status(200).json(post.comments);
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server error');
     }
   }
 );
-
-//DELETE comment - 댓글 삭제하기
 
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {

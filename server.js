@@ -18,6 +18,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/mypage', require('./routes/api/mypage'));
+app.use('/api/main', require('./routes/api/main'));
 
 // static assets in production
 

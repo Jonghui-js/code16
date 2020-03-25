@@ -9,7 +9,7 @@ const PostItem = ({ auth, post: { _id, title, mbti, comments, date } }) => {
     <Fragment>
       <tr className='list'>
         <td className='title'>
-          <span className='mbti-type'>{mbti}</span>
+          <span className={`${mbti} mbti-type`}>{mbti}</span>
           <Link to={`/posts/${_id}`}>{title}</Link>
           <Link to={`/posts/${_id}`} className='comments'>
             [{comments.length}]

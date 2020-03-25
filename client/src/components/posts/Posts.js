@@ -1,28 +1,38 @@
-import React, { Fragment, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-import { getCurrentPosts } from '../../actions/post';
 import { Pagination } from 'semantic-ui-react';
+import axios from 'axios';
 
 // post 상태에서 posts, loading 가져오기
-const Posts = ({
-  getCurrentPosts,
-  post: {
-    loading,
-    pagination: { currentPage, currentPosts, totalPages, editing }
-  }
-}) => {
-  useEffect(() => {
-    getCurrentPosts(currentPage);
-  }, [getCurrentPosts, currentPage]);
+const Posts = () => {
+  const onchange = (e, pageInfo) => {
+    setActivePage(pageInfo.activePage);
+    setApiUrl('/api/posts?page=' + pageInfo.activePage.toString());
+    // history.push(`/posts/page/${pageInfo.activePage.toString()}`);
+  };
 
-  return editing || loading ? (
+  const [currentPosts, setCurrentPosts] = useState([]);
+  const [apiUrl, setApiUrl] = useState('/api/posts/');
+  const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(10);
+  const [activePage, setActivePage] = useState(1);
+  //const [mbti, setMbti] = useState('mbti');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(apiUrl);
+      setCurrentPosts(res.data.currentPosts);
+      setLoading(res.data.loading);
+      setTotalPages(res.data.total);
+    };
+    fetchData();
+  }, [apiUrl]);
+  return loading || !currentPosts ? (
     <Spinner />
   ) : (
-    <Fragment>
+    <>
       <table className='community'>
         <tbody>
           {currentPosts.map(post => (
@@ -32,14 +42,11 @@ const Posts = ({
       </table>
       <div className='pagination'>
         <Pagination
-          activePage={!currentPage ? 1 : currentPage}
-          onPageChange={event => {
-            !event.currentTarget.innerText
-              ? getCurrentPosts(1)
-              : getCurrentPosts(event.currentTarget.innerText);
-          }}
+          activePage={activePage}
+          onPageChange={onchange}
           totalPages={totalPages}
           size='mini'
+          ellipsisItem={null}
           firstItem={null}
           lastItem={null}
           prevItem={null}
@@ -49,17 +56,8 @@ const Posts = ({
       <Link to='/create-post'>
         <button className='btn btn-post-create'>글쓰기</button>
       </Link>
-    </Fragment>
+    </>
   );
 };
 
-Posts.propTypes = {
-  getCurrentPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  post: state.post
-});
-
-export default connect(mapStateToProps, { getCurrentPosts })(Posts);
+export default Posts;

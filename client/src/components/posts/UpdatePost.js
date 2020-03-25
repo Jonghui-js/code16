@@ -22,7 +22,6 @@ const UpdatePost = ({
       onSubmit={e => {
         e.preventDefault();
         updatePost(post._id, { text, title });
-
         setText('');
         setTitle('');
       }}
