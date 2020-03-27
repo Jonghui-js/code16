@@ -8,8 +8,6 @@ import Posts from '../posts/Posts';
 import Post from '../posts/Post';
 import UpdatePost from '../posts/UpdatePost';
 import PostForm from '../posts/PostForm';
-//import MyPosts from '../auth/mypage/MyPosts';
-//import MyComments from '../auth/mypage/MyComments';
 import PrivateRoute from './PrivateRoute';
 import Main from '../layout/Main';
 import NotFound from '../layout/NotFound';

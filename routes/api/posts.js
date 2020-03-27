@@ -167,7 +167,6 @@ router.post(
         mbti: user.mbti,
         user: req.user.id
       };
-
       post.comments.unshift(newComment);
 
       await post.save();

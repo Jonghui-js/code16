@@ -2,37 +2,85 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
-import { Pagination } from 'semantic-ui-react';
+import { Pagination, Header, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 
-// post 상태에서 posts, loading 가져오기
 const Posts = () => {
-  const onchange = (e, pageInfo) => {
-    setActivePage(pageInfo.activePage);
-    setApiUrl('/api/posts?page=' + pageInfo.activePage.toString());
-    // history.push(`/posts/page/${pageInfo.activePage.toString()}`);
-  };
+  // MBTI options
+  const options = [
+    {
+      key: 'mbti',
+      text: 'MBTI',
+      value: 'MBTI'
+    },
+    {
+      key: 'entp',
+      text: 'entp',
+      value: 'entp',
+      content: 'ENTP'
+    },
+    {
+      key: 'enfj',
+      text: 'enfj',
+      value: 'enfj',
+      content: 'ENFJ'
+    },
+    {
+      key: 'entj',
+      text: 'entj',
+      value: 'entj',
+      content: 'ENTJ'
+    },
+    {
+      key: 'this month',
+      text: 'this month',
+      value: 'this month',
+      content: 'This Month'
+    }
+  ];
 
   const [currentPosts, setCurrentPosts] = useState([]);
-  const [apiUrl, setApiUrl] = useState('/api/posts/');
+  //const [apiUrl, setApiUrl] = useState('/api/posts/');
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(10);
   const [activePage, setActivePage] = useState(1);
-  //const [mbti, setMbti] = useState('mbti');
+  const [pageQuery, setPageQuery] = useState();
+  const [mbtiQuery, setMbtiQuery] = useState();
+
+  const onchange = (e, pageInfo) => {
+    setActivePage(pageInfo.activePage);
+    setPageQuery(`page=${pageInfo.activePage.toString()}`);
+  };
+
+  const onChange = event => {
+    setMbtiQuery(`mbti=${event.currentTarget.innerText.toLowerCase()}`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(apiUrl);
+      const res = await axios.get(`/api/posts?${pageQuery}&${mbtiQuery}`);
       setCurrentPosts(res.data.currentPosts);
       setLoading(res.data.loading);
       setTotalPages(res.data.total);
     };
     fetchData();
-  }, [apiUrl]);
+  }, [pageQuery, mbtiQuery]);
   return loading || !currentPosts ? (
     <Spinner />
   ) : (
     <>
+      <Header as='h4'>
+        <Header.Content>
+          유형별 글 모아보기{' '}
+          <Dropdown
+            inline
+            header='MBTI TYPE'
+            options={options}
+            onChange={onChange}
+            defaultValue={options[0].value}
+          />
+        </Header.Content>
+      </Header>
       <table className='community'>
         <tbody>
           {currentPosts.map(post => (
@@ -46,7 +94,7 @@ const Posts = () => {
           onPageChange={onchange}
           totalPages={totalPages}
           size='mini'
-          ellipsisItem={null}
+          ellipsisItem={undefined}
           firstItem={null}
           lastItem={null}
           prevItem={null}

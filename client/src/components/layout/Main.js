@@ -19,8 +19,7 @@ const Landing = () => {
   ) : (
     <div className='statistic'>
       <Header as='h2' icon textAlign='center'>
-        <Icon name='users' />
-        <Header.Content>CODE16 회원들의 현황입니다. </Header.Content>
+        <Icon name='qq' />
       </Header>
       <Divider />
       <Statistic.Group widths={4}>

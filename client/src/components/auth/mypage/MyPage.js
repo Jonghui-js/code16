@@ -12,10 +12,10 @@ import { getMyContents, deleteAccount } from '../../../actions/mypage';
 import Spinner from '../../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, withRouter, Route, NavLink } from 'react-router-dom';
+import { withRouter, Route, NavLink } from 'react-router-dom';
 import MyPosts from './MyPosts';
 import MyComments from './MyComments';
-import PrivateRoute from '../../routing/PrivateRoute';
+//import PrivateRoute from '../../routing/PrivateRoute';
 
 const MyPage = ({
   auth: {
@@ -55,8 +55,8 @@ const MyPage = ({
         </Menu.Item>
       </Menu>
       <main>
-        <Route exact={true} path='/mypage/myposts' component={MyPosts} />
-        <Route exact={true} path='/mypage/mycomments' component={MyComments} />
+        <Route exact path='/mypage/myposts' component={MyPosts} />
+        <Route exact path='/mypage/mycomments' component={MyComments} />
       </main>
       <Modal
         trigger={
