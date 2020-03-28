@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { setNav } from '../../actions/nav';
 
 // useMemo 사용하기
 const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -26,7 +27,9 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/posts'>게시판</Link>
+        <Link to='/posts' onClick={setNav}>
+          게시판
+        </Link>
       </li>
       <li>
         <Link to='/signup'>회원가입</Link>
@@ -54,10 +57,12 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 NavBar.propTypes = {
   logout: PropTypes.func.isRequired,
+  setNav: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  nav: state.nav
 });
-export default connect(mapStateToProps, { logout })(NavBar);
+export default connect(mapStateToProps, { logout, setNav })(NavBar);

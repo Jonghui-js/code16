@@ -28,3 +28,4 @@ export const CLEAR_MYPAGE = 'CLEAR_MYPAGE';
 export const GET_USER_ERROR = 'GET_USER_ERROR';
 export const MYPAGE_ERROR = 'MYPAGE_ERROR';
 export const USER_DELETED = 'USER_DELETED';
+export const SET_NAV = 'SET_NAV';

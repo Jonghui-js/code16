@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { Pagination, Header, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
+import qs from 'query-string';
 
-const Posts = () => {
+const Posts = ({ history }) => {
   // MBTI options
   const options = [
     {
       key: 'mbti',
-      text: 'MBTI',
-      value: 'MBTI'
+      text: 'all',
+      value: 'all',
+      content: 'all'
     },
     {
       key: 'entp',
@@ -40,32 +42,38 @@ const Posts = () => {
   ];
 
   const [currentPosts, setCurrentPosts] = useState([]);
-  //const [apiUrl, setApiUrl] = useState('/api/posts/');
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(10);
-  const [activePage, setActivePage] = useState(1);
-  const [pageQuery, setPageQuery] = useState();
-  const [mbtiQuery, setMbtiQuery] = useState();
+  const [page, setPage] = useState(1);
+  const [mbti, setMbti] = useState('all');
 
-  const onchange = (e, pageInfo) => {
-    setActivePage(pageInfo.activePage);
-    setPageQuery(`page=${pageInfo.activePage.toString()}`);
+  const queryObj = { page, mbti };
+  const query = qs.stringify(queryObj);
+  console.log(query);
+
+  const onChangePage = (e, pageInfo) => {
+    //history.push(`/community?${query}`);
+    setPage(pageInfo.activePage);
+    // return <Link to={`/community?${query}`}></Link>;
   };
-
-  const onChange = event => {
-    setMbtiQuery(`mbti=${event.currentTarget.innerText.toLowerCase()}`);
+  const onChangeMbti = event => {
+    setMbti(event.currentTarget.innerText.toLowerCase());
+    setPage(1);
+    // history.push(`/posts?${query}`);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`/api/posts?${pageQuery}&${mbtiQuery}`);
+      setLoading(true);
+      const res = await axios.get(`/api/posts?${query}`);
       setCurrentPosts(res.data.currentPosts);
       setLoading(res.data.loading);
       setTotalPages(res.data.total);
     };
     fetchData();
-  }, [pageQuery, mbtiQuery]);
-  return loading || !currentPosts ? (
+  }, [query]);
+
+  return loading ? (
     <Spinner />
   ) : (
     <>
@@ -75,9 +83,9 @@ const Posts = () => {
           <Dropdown
             inline
             header='MBTI TYPE'
+            value={mbti}
             options={options}
-            onChange={onChange}
-            defaultValue={options[0].value}
+            onChange={onChangeMbti}
           />
         </Header.Content>
       </Header>
@@ -90,8 +98,8 @@ const Posts = () => {
       </table>
       <div className='pagination'>
         <Pagination
-          activePage={activePage}
-          onPageChange={onchange}
+          activePage={page}
+          onPageChange={onChangePage}
           totalPages={totalPages}
           size='mini'
           ellipsisItem={undefined}
@@ -108,4 +116,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default withRouter(Posts);
