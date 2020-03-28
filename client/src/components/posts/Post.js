@@ -12,14 +12,20 @@ import CommentItem from './CommentItem';
 const Post = ({
   getPost,
   history,
-  post: { post, loading },
+  post: { post },
   match,
   deletePost,
   auth
 }) => {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getPost(match.params.id);
-  }, [getPost, match.params.id]);
+    const fetchData = async () => {
+      await getPost(match.params.id);
+      setLoading(false);
+    };
+    fetchData();
+  }, [match.params.id, getPost]);
 
   const [modal, setModal] = useState({ open: false });
 
