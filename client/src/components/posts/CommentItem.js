@@ -17,7 +17,7 @@ const CommentItem = ({
         <Comment.Text className='comment-text'>{text}</Comment.Text>
         <Comment.Content>
           <Comment.Metadata className='comment-meta'>
-            <span className='mbti-type'>{mbti}</span>
+            <span className={`mbti-type ${mbti}`}>{mbti}</span>
             {name} &nbsp; &nbsp;
             <Moment format='YYYY/MM/DD HH:mm'>{date}</Moment>&nbsp; &nbsp;
             {!auth.loading && user === auth.user._id && (

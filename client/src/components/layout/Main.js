@@ -24,8 +24,10 @@ const Landing = () => {
       <Divider />
       <Statistic.Group widths={4}>
         {mbti.map(type => (
-          <Statistic className={`${type._id}`} key={`${type._id}`}>
-            <Statistic.Value>{type.count}명</Statistic.Value>
+          <Statistic key={`${type._id}`}>
+            <Statistic.Value className={`${type._id}`}>
+              {type.count}명
+            </Statistic.Value>
             <Statistic.Label>{type._id}</Statistic.Label>
           </Statistic>
         ))}

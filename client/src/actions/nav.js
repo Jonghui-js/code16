@@ -1,8 +1,8 @@
 import { SET_NAV } from './types';
 
-export const setNav = () => async dispatch => {
+export const setNav = boo => async dispatch => {
   dispatch({
     type: SET_NAV,
-    payload: true
+    payload: boo
   });
 };

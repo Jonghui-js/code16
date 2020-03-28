@@ -7,11 +7,13 @@ import { logout } from '../../actions/auth';
 import { setNav } from '../../actions/nav';
 
 // useMemo 사용하기
-const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const NavBar = ({ auth: { isAuthenticated, loading }, logout, setNav }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/posts'>Community</Link>
+        <Link to='/posts' onClick={() => setNav(true)}>
+          Community
+        </Link>
       </li>
       <li>
         <Link to='/mypage'>My Page</Link>
@@ -27,7 +29,12 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/posts' onClick={setNav}>
+        <Link
+          to='/posts'
+          onClick={() => {
+            setNav(true);
+          }}
+        >
           게시판
         </Link>
       </li>

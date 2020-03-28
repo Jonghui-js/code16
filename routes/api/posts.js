@@ -77,16 +77,16 @@ router.put(
 
 router.get('/', async (req, res) => {
   try {
-    const mbti = req.query.mbti ? req.query.mbti.toUpperCase() : req.query.mbti;
+    const mbti = req.query.mbti.toUpperCase(); //? req.query.mbti.toUpperCase() : req.query.mbti;
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 15;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-    const posts = await (!mbti
+    const posts = await (mbti === 'ALL'
       ? Post.find().sort({ date: -1 })
       : Post.find({ mbti: mbti }).sort({ date: -1 }));
     const total = Math.ceil(posts.length / limit);
-    const currentPosts = await (!mbti
+    const currentPosts = await (mbti === 'ALL'
       ? Post.find()
           .sort({ date: -1 })
           .skip(startIndex)

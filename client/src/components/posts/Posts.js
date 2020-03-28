@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { Pagination, Header, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 import qs from 'query-string';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setNav } from '../../actions/nav';
 
-const Posts = ({ history }) => {
+const Posts = ({ setNav, nav }) => {
   // MBTI options
   const options = [
     {
@@ -16,10 +19,88 @@ const Posts = ({ history }) => {
       content: 'all'
     },
     {
+      key: 'istj',
+      text: 'istj',
+      value: 'istj',
+      content: 'ISTJ'
+    },
+    {
+      key: 'isfj',
+      text: 'isfj',
+      value: 'isfj',
+      content: 'ISFJ'
+    },
+    {
+      key: 'infj',
+      text: 'infj',
+      value: 'infj',
+      content: 'INFJ'
+    },
+    {
+      key: 'intj',
+      text: 'intj',
+      value: 'intj',
+      content: 'INTJ'
+    },
+    {
+      key: 'istp',
+      text: 'istp',
+      value: 'istp',
+      content: 'ISTP'
+    },
+    {
+      key: 'isfp',
+      text: 'isfp',
+      value: 'isfp',
+      content: 'ISFP'
+    },
+    {
+      key: 'infp',
+      text: 'infp',
+      value: 'infp',
+      content: 'INFP'
+    },
+    {
+      key: 'intp',
+      text: 'intp',
+      value: 'intp',
+      content: 'INTP'
+    },
+    {
+      key: 'estp',
+      text: 'estp',
+      value: 'estp',
+      content: 'ESTP'
+    },
+    {
+      key: 'esfp',
+      text: 'esfp',
+      value: 'esfp',
+      content: 'ESFP'
+    },
+    {
+      key: 'enfp',
+      text: 'enfp',
+      value: 'enfp',
+      content: 'ENFP'
+    },
+    {
       key: 'entp',
       text: 'entp',
       value: 'entp',
       content: 'ENTP'
+    },
+    {
+      key: 'estj',
+      text: 'estj',
+      value: 'estj',
+      content: 'ESTJ'
+    },
+    {
+      key: 'esfj',
+      text: 'esfj',
+      value: 'esfj',
+      content: 'ESFJ'
     },
     {
       key: 'enfj',
@@ -32,12 +113,6 @@ const Posts = ({ history }) => {
       text: 'entj',
       value: 'entj',
       content: 'ENTJ'
-    },
-    {
-      key: 'this month',
-      text: 'this month',
-      value: 'this month',
-      content: 'This Month'
     }
   ];
 
@@ -49,18 +124,19 @@ const Posts = ({ history }) => {
 
   const queryObj = { page, mbti };
   const query = qs.stringify(queryObj);
-  console.log(query);
 
   const onChangePage = (e, pageInfo) => {
-    //history.push(`/community?${query}`);
     setPage(pageInfo.activePage);
-    // return <Link to={`/community?${query}`}></Link>;
   };
   const onChangeMbti = event => {
     setMbti(event.currentTarget.innerText.toLowerCase());
     setPage(1);
-    // history.push(`/posts?${query}`);
   };
+
+  if (nav.navState && (page !== 1 || mbti !== 'all')) {
+    setPage(1);
+    setMbti('all');
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,6 +145,7 @@ const Posts = ({ history }) => {
       setCurrentPosts(res.data.currentPosts);
       setLoading(res.data.loading);
       setTotalPages(res.data.total);
+      setNav(false);
     };
     fetchData();
   }, [query]);
@@ -81,6 +158,7 @@ const Posts = ({ history }) => {
         <Header.Content>
           유형별 글 모아보기{' '}
           <Dropdown
+            scrolling
             inline
             header='MBTI TYPE'
             value={mbti}
@@ -96,7 +174,7 @@ const Posts = ({ history }) => {
           ))}
         </tbody>
       </table>
-      <div className='pagination'>
+      <div className='pagination-div'>
         <Pagination
           activePage={page}
           onPageChange={onChangePage}
@@ -116,4 +194,13 @@ const Posts = ({ history }) => {
   );
 };
 
-export default withRouter(Posts);
+Posts.propTypes = {
+  nav: PropTypes.object.isRequired,
+  setNav: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  nav: state.nav
+});
+
+export default connect(mapStateToProps, { setNav })(Posts);
