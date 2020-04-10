@@ -20,6 +20,7 @@ export const UPDATE_POST = 'UPDATE_POST';
 // comment
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 // my page action types
 export const GET_MY_CONTENTS = 'GET_MY_CONTENTS';

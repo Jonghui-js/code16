@@ -16,7 +16,7 @@ body {
 }
 /* 메인 페이지 통계 */
 .statistic {
-  margin-top: 8rem;
+  margin-top: 10rem;
   font-family: 'Do Hyeon', sans-serif;
 }
 
@@ -410,6 +410,23 @@ p {
   font-size: 0.7rem;
   color: red;
   background-color: white;
+}
+
+.comment-update-textarea {
+  position: relative;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  overflow-wrap: break-word;
+  display: inline-block;
+  width: 85%;
+  height: auto;
+  font-size: 13px;
+  padding: 5px;
+}
+
+.comment-update-textarea:focus {
+  outline: none;
 }
 
 .btn.btn-signup,

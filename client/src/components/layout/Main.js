@@ -22,8 +22,8 @@ const Landing = () => {
         <Icon name='qq' />
       </Header>
       <Divider />
-      <Statistic.Group widths={4}>
-        {mbti.map(type => (
+      <Statistic.Group widths={4} size='tiny'>
+        {mbti.map((type) => (
           <Statistic key={`${type._id}`}>
             <Statistic.Value className={`${type._id}`}>
               {type.count}명

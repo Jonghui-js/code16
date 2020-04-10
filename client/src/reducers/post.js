@@ -6,52 +6,54 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
   UPDATE_POST,
-  GET_CURRENTPOSTS
+  UPDATE_COMMENT,
+  GET_CURRENTPOSTS,
 } from '../actions/types';
 
 const initialState = {
   post: null,
   editing: false,
-  error: {}
+  error: {},
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_CURRENTPOSTS:
       return {
         ...state,
-        post: null
+        post: null,
       };
     case GET_POST:
       return {
         ...state,
         post: payload,
-        editing: true
+        editing: true,
       };
     case ADD_POST:
       return {
-        ...state
+        ...state,
       };
     case DELETE_POST:
       return {
         ...state,
-        editing: false
+        editing: false,
       };
     case POST_ERROR:
       return {
         ...state,
-        error: payload
+        error: payload,
       };
     case UPDATE_POST:
       return {
         ...state,
-        editing: false
+        editing: false,
       };
     case ADD_COMMENT:
+    case UPDATE_COMMENT:
       return {
         ...state,
-        post: { ...state.post, comments: payload }
+        post: { ...state.post, comments: payload },
       };
     case REMOVE_COMMENT:
       return {
@@ -59,9 +61,9 @@ export default function(state = initialState, action) {
         post: {
           ...state.post,
           comments: state.post.comments.filter(
-            comment => comment._id !== payload
-          )
-        }
+            (comment) => comment._id !== payload
+          ),
+        },
       };
     default:
       return state;

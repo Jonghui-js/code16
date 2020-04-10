@@ -9,12 +9,9 @@ import ScrollToTop from 'react-router-scroll-top';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
 function App() {
   useEffect(() => {
+    setAuthToken(localStorage.token);
     store.dispatch(loadUser());
   }, []);
   return (
