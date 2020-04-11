@@ -22,9 +22,8 @@
 
 ## 사진
 
-<img src="images/code16_main.png" width="330px">
-![images/code16_main.png =330px](images/code16_main.png)
-
-![images/code16_posts.png =330px](images/code16_posts.png)
-
-![images/ezgif.com-video-to-gif.gif =330px](images/ezgif.com-video-to-gif.gif)
+<div>
+<img src="images/code16_main.png" width="250px">
+<img src="images/code16_posts.png" width="250px">
+<img src="images/ezgif.com-video-to-gif.gif" width="250px">
+</div>
