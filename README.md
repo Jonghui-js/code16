@@ -22,8 +22,8 @@
 
 ## 사진
 
-![images/code16_main.png](images/code16_main.png)
+![images/code16_main.png](images/code16_main.png =330px)
 
-![images/code16_posts.png](images/code16_posts.png)
+![images/code16_posts.png](images/code16_posts.png =330px)
 
-![images/ezgif.com-video-to-gif.gif](images/ezgif.com-video-to-gif.gif)
+![images/ezgif.com-video-to-gif.gif](images/ezgif.com-video-to-gif.gif =330px)
