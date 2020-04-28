@@ -429,6 +429,10 @@ p {
   outline: none;
 }
 
+.comment-update-textarea:disabled {
+  color: black;
+}
+
 .btn.btn-signup,
 .btn.btn-login {
   display: block;

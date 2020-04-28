@@ -14,7 +14,7 @@ const CommentItem = ({
 }) => {
   const [commentText, setCommentText] = useState(text);
   const [editing, setEditing] = useState(false);
-  const [disabled, setDisabled] = useState('disabled');
+  const [disabled, setDisabled] = useState(true);
 
   return (
     <>
@@ -25,6 +25,7 @@ const CommentItem = ({
             disabled={disabled}
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
+            style={editing ? { border: '1px solid red' } : null}
           ></textarea>
         </Comment.Text>
         <Comment.Content>
@@ -38,10 +39,11 @@ const CommentItem = ({
                   onClick={() => {
                     if (!editing) {
                       setEditing(true);
-                      setDisabled(null);
+                      setDisabled(false);
                     } else {
                       updateComment(postId, _id, { commentText });
                       setEditing(false);
+                      setDisabled(true);
                     }
                   }}
                   type='botton'
