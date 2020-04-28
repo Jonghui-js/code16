@@ -73,7 +73,6 @@ router.get('/', async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 15;
     const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
     const posts = await (mbti === 'ALL'
       ? Post.find().sort({ date: -1 })
       : Post.find({ mbti: mbti }).sort({ date: -1 }));

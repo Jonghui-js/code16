@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import { Pagination } from 'semantic-ui-react';
 
 const MyComments = ({ mypage: { mycomments } }) => {
+  const [page, setPage] = useState({
+    totalPosts: mycomments.length,
+    currentPage: 1,
+    postsPerPage: 10,
+  });
+  let startIndex = (page.currentPage - 1) * page.postsPerPage;
+  let endIndex = page.currentPage * page.postsPerPage;
+
+  const onChangePage = (e, pageInfo) => {
+    setPage({ ...page, currentPage: pageInfo.activePage });
+  };
   return (
     <>
       <table className='community'>
         <tbody>
-          {mycomments.map(post => (
+          {mycomments.map((post) => (
             <tr className='list' key={post._id}>
               <td className='title'>
                 <Link to={`/posts/${post._id}`}>{post.comments[0].text}</Link>
@@ -20,38 +32,26 @@ const MyComments = ({ mypage: { mycomments } }) => {
           ))}
         </tbody>
       </table>
+      <div className='pagination-div'>
+        <Pagination
+          boundaryRange={0}
+          size='mini'
+          activePage={page.currentPage}
+          onPageChange={onChangePage}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          siblingRange={1}
+          totalPages={Math.ceil(page.totalPosts / page.postsPerPage)}
+        />
+      </div>
     </>
   );
 };
 
-/*
-const MyComments = ({
-  auth: {
-    user: { name }
-  },
-  mypage: { mycomments }
-}) => {
-  console.log(mycomments[0].comments);
-  const Arr = mycomments[0].comments;
-  console.log(Arr[0]);
-
-  return <div className='comments'></div>;
-};
-
-MyComments.propTypes = {
-  auth: PropTypes.object.isRequired,
-  mypage: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  mypage: state.mypage
-});
-*/
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  mypage: state.mypage
+  mypage: state.mypage,
 });
 
 export default connect(mapStateToProps, {})(MyComments);

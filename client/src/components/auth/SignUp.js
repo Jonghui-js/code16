@@ -5,6 +5,7 @@ import { setAlert } from '../../actions/alert';
 import { signup } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
+import Alert from '../layout/Alert';
 
 const SignUp = ({ setAlert, signup, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -12,15 +13,15 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
     email: '',
     password: '',
     mbti: '',
-    password2: ''
+    password2: '',
   });
 
   const { name, email, mbti, password, password2 } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== password2) {
@@ -35,17 +36,18 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
   }
   return (
     <div className='signup'>
+      <Alert />
       <h1>회원 가입</h1>
       <p>
         <Icon name='signup'></Icon> code16 에서는 MBTI 유형과 ID로 소통합니다.
       </p>
 
-      <form className='form' onSubmit={e => onSubmit(e)}>
+      <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <select
             name='mbti'
             className='signup-mbti'
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           >
             <option value='type'>MBTI 선택</option>
             <option value='ISTJ'>ISTJ</option>
@@ -72,7 +74,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             placeholder='ID'
             name='name'
             value={name}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
@@ -81,7 +83,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             placeholder='Email'
             name='email'
             value={email}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
@@ -90,7 +92,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             placeholder='6자 이상 입력하세요'
             name='password'
             value={password}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className='form-group'>
@@ -99,7 +101,7 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
             placeholder='다시 한번 입력해주세요'
             name='password2'
             value={password2}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <input type='submit' className='btn btn-signup' value='가입하기' />
@@ -114,11 +116,11 @@ const SignUp = ({ setAlert, signup, isAuthenticated }) => {
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { setAlert, signup })(SignUp);

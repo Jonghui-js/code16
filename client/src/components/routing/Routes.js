@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import SignUp from '../auth/SignUp';
 import LogIn from '../auth/LogIn';
 import MyPage from '../auth/mypage/MyPage';
-import Alert from '../layout/Alert';
 import Posts from '../posts/Posts';
 import Post from '../posts/Post';
 import UpdatePost from '../posts/UpdatePost';
@@ -15,7 +14,6 @@ import NotFound from '../layout/NotFound';
 const Routes = () => {
   return (
     <section className='container'>
-      <Alert />
       <Switch>
         <Route exact path='/' component={Main} />
         <Route exact path='/signup' component={SignUp} />

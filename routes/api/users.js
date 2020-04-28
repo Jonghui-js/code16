@@ -11,17 +11,13 @@ const User = require('../../models/User');
 router.post(
   '/',
   [
-    check('name', '아이디를 작성해주세요')
-      .not()
-      .isEmpty(),
-    check('mbti', 'MBTI 유형을 선택하세요')
-      .not()
-      .isEmpty(),
+    check('name', '아이디를 작성해주세요').not().isEmpty(),
+    check('mbti', 'MBTI 유형을 선택하세요').not().isEmpty(),
 
     check('email', '이메일 형식에 맞게 작성해주세요').isEmail(),
     check('password', '비밀번호는 6자 이상으로 설정해주세요').isLength({
-      min: 6
-    })
+      min: 6,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -32,7 +28,6 @@ router.post(
     const { name, email, mbti, password } = req.body;
 
     try {
-      //see if user exists
       let existingEmail = await User.findOne({ email });
       let existingName = await User.findOne({ name });
       if (existingEmail) {
@@ -50,7 +45,7 @@ router.post(
         name,
         email,
         mbti,
-        password
+        password,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -60,14 +55,14 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
         config.get('jwtSecret'),
         {
-          expiresIn: 360000
+          expiresIn: 360000,
         },
         (err, token) => {
           if (err) throw err;

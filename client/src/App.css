@@ -103,6 +103,9 @@ body {
   top: 0;
   opacity: 0.9;
 }
+.navbar h1 {
+  margin: 0;
+}
 
 .navbar ul {
   display: flex;
@@ -281,6 +284,24 @@ body {
   font-size: 1.2rem;
   border: 1px solid black;
 }
+
+/* update profile 폼 */
+.profile {
+  margin-top: 3rem;
+}
+.profile .form input[type='text'],
+.profile .form input[type='email'],
+.profile .form select {
+  display: block;
+  width: 300px;
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+/* login form */
 
 .login h1,
 p {
@@ -574,16 +595,19 @@ span.contents-number {
   color: red;
 }
 
-.delete-account {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
+.ui.button.delete-account {
+  display: flex;
+  margin: auto;
+  margin-top: 5px;
+  justify-content: center;
 }
 
 .ui.segment.myInfo {
+  position: relative;
   color: black;
   font-weight: bolder;
   text-align: center;
+
   background-color: var(--primary-color);
 }
 
