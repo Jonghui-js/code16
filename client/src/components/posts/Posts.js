@@ -16,104 +16,104 @@ const Posts = ({ setNav, nav }) => {
       key: 'mbti',
       text: 'all',
       value: 'all',
-      content: 'all'
+      content: 'all',
     },
     {
       key: 'istj',
       text: 'istj',
       value: 'istj',
-      content: 'ISTJ'
+      content: 'ISTJ',
     },
     {
       key: 'isfj',
       text: 'isfj',
       value: 'isfj',
-      content: 'ISFJ'
+      content: 'ISFJ',
     },
     {
       key: 'infj',
       text: 'infj',
       value: 'infj',
-      content: 'INFJ'
+      content: 'INFJ',
     },
     {
       key: 'intj',
       text: 'intj',
       value: 'intj',
-      content: 'INTJ'
+      content: 'INTJ',
     },
     {
       key: 'istp',
       text: 'istp',
       value: 'istp',
-      content: 'ISTP'
+      content: 'ISTP',
     },
     {
       key: 'isfp',
       text: 'isfp',
       value: 'isfp',
-      content: 'ISFP'
+      content: 'ISFP',
     },
     {
       key: 'infp',
       text: 'infp',
       value: 'infp',
-      content: 'INFP'
+      content: 'INFP',
     },
     {
       key: 'intp',
       text: 'intp',
       value: 'intp',
-      content: 'INTP'
+      content: 'INTP',
     },
     {
       key: 'estp',
       text: 'estp',
       value: 'estp',
-      content: 'ESTP'
+      content: 'ESTP',
     },
     {
       key: 'esfp',
       text: 'esfp',
       value: 'esfp',
-      content: 'ESFP'
+      content: 'ESFP',
     },
     {
       key: 'enfp',
       text: 'enfp',
       value: 'enfp',
-      content: 'ENFP'
+      content: 'ENFP',
     },
     {
       key: 'entp',
       text: 'entp',
       value: 'entp',
-      content: 'ENTP'
+      content: 'ENTP',
     },
     {
       key: 'estj',
       text: 'estj',
       value: 'estj',
-      content: 'ESTJ'
+      content: 'ESTJ',
     },
     {
       key: 'esfj',
       text: 'esfj',
       value: 'esfj',
-      content: 'ESFJ'
+      content: 'ESFJ',
     },
     {
       key: 'enfj',
       text: 'enfj',
       value: 'enfj',
-      content: 'ENFJ'
+      content: 'ENFJ',
     },
     {
       key: 'entj',
       text: 'entj',
       value: 'entj',
-      content: 'ENTJ'
-    }
+      content: 'ENTJ',
+    },
   ];
 
   const [currentPosts, setCurrentPosts] = useState([]);
@@ -128,7 +128,7 @@ const Posts = ({ setNav, nav }) => {
   const onChangePage = (e, pageInfo) => {
     setPage(pageInfo.activePage);
   };
-  const onChangeMbti = event => {
+  const onChangeMbti = (event) => {
     setMbti(event.currentTarget.innerText.toLowerCase());
     setPage(1);
   };
@@ -169,7 +169,7 @@ const Posts = ({ setNav, nav }) => {
       </Header>
       <table className='community'>
         <tbody>
-          {currentPosts.map(post => (
+          {currentPosts.map((post) => (
             <PostItem key={post._id} post={post} />
           ))}
         </tbody>
@@ -183,8 +183,6 @@ const Posts = ({ setNav, nav }) => {
           ellipsisItem={undefined}
           firstItem={null}
           lastItem={null}
-          prevItem={null}
-          nextItem={null}
         />
       </div>
       <Link to='/create-post'>
@@ -196,11 +194,11 @@ const Posts = ({ setNav, nav }) => {
 
 Posts.propTypes = {
   nav: PropTypes.object.isRequired,
-  setNav: PropTypes.func.isRequired
+  setNav: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  nav: state.nav
+const mapStateToProps = (state) => ({
+  nav: state.nav,
 });
 
 export default connect(mapStateToProps, { setNav })(Posts);

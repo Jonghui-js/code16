@@ -9,18 +9,18 @@ const User = require('../../models/User');
 const Post = require('../../models/Post');
 
 //GET all my contents - 내 글, 댓글 가져오기
-router.get('/:name', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const myposts = await Post.find({ name: req.params.name }).sort({
+    const myposts = await Post.find({ user: req.user.id }).sort({
       date: -1,
     });
     const mycomments = await Post.find(
       {
-        comments: { $elemMatch: { name: req.params.name } },
+        comments: { $elemMatch: { user: req.user.id } },
       },
       {
         comments: {
-          $elemMatch: { name: req.params.name },
+          $elemMatch: { user: req.user.id },
         },
         'comments.text': true,
         'comments.date': true,
@@ -28,8 +28,9 @@ router.get('/:name', auth, async (req, res) => {
     ).sort({
       date: -1,
     });
-    const mycontents = { myposts, mycomments };
-    res.json(mycontents);
+    const myContent = { myposts, mycomments };
+
+    res.json(myContent);
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server error');
@@ -37,7 +38,7 @@ router.get('/:name', auth, async (req, res) => {
 });
 
 router.put(
-  '/:name',
+  '/',
   auth,
   [
     check('email', '유효한 이메일이 아닙니다.').isEmail(),
@@ -49,39 +50,28 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
     const { name, email, mbti } = req.body;
-    const user = await User.findById(req.user.id);
+    let user = await User.findById(req.user.id);
     let existingName = await User.findOne({ name });
     let existingEmail = await User.findOne({ email });
+    if (existingName && user.name !== name) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: '같은 ID 계정이 이미 존재합니다' }] });
+    }
+    if (existingEmail && user.email !== email) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: '같은 이메일 계정이 이미 존재합니다' }] });
+    }
 
     try {
-      if (user.name !== name && existingName) {
-        console.log('test3');
-        return res
-          .status(400)
-          .json({ errors: [{ msg: '같은 ID 계정이 이미 존재합니다' }] });
-      }
-      await User.findByIdAndUpdate(
+      user = await User.findByIdAndUpdate(
         req.user.id,
-        { name: name },
+        { name: name, email: email, mbti: mbti },
         {
           new: true,
-          runValidators: true,
         }
-      );
-      if (user.email !== email && existingEmail) {
-        console.log('test0');
-        return res
-          .status(400)
-          .json({ errors: [{ msg: '같은 이메일 계정이 이미 존재합니다' }] });
-      }
-      await User.findByIdAndUpdate(
-        req.user.id,
-        { email: email },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+      ).select('-password');
 
       res.json(user);
     } catch (err) {

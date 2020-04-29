@@ -11,9 +11,10 @@ import {
 
 // user의 글, 댓글, 이름, mbti 가져오기
 
-export const getMyContents = (name) => async (dispatch) => {
+export const getMyContents = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/mypage/${name}`);
+    const res = await axios.get(`/api/mypage`);
+
     dispatch({
       type: GET_MY_CONTENTS,
       payload: res.data,
@@ -27,16 +28,16 @@ export const getMyContents = (name) => async (dispatch) => {
 };
 
 export const updateProfile = ({ name, email, mbti }) => async (dispatch) => {
-  console.log('업데이트');
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
   const body = JSON.stringify({ name, email, mbti });
+
   try {
-    const res = await axios.put(`/api/mypage/${name}`, body, config);
-    console.log(res.data);
+    const res = await axios.put(`/api/mypage`, body, config);
+
     dispatch({
       type: UPDATE_USER,
       payload: res.data,

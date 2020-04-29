@@ -95,14 +95,14 @@ router.get('/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: '존재하지 않는 글입니다' });
     }
     const result = post;
     res.json(result);
   } catch (err) {
     console.log(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: '존재하지 않는 글입니다' });
     }
     res.status(500).send('Server error');
   }
@@ -113,7 +113,7 @@ router.delete('/:id', auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: '존재하지 않는 글입니다' });
     }
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
@@ -125,7 +125,7 @@ router.delete('/:id', auth, async (req, res) => {
   } catch (err) {
     console.log(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: '존재하지 않는 글입니다' });
     }
     res.status(500).send('Server error');
   }

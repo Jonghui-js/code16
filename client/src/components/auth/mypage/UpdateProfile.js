@@ -41,7 +41,7 @@ const UpdateProfile = ({ user, updateProfile, deleteAccount, history }) => {
 
   const onClick = async (e) => {
     e.preventDefault();
-    console.log('여기');
+
     updateProfile({ name, email, mbti });
     setEditing(false);
   };
@@ -52,17 +52,14 @@ const UpdateProfile = ({ user, updateProfile, deleteAccount, history }) => {
         <form className='form'>
           <div className='form-group'>
             <select
+              defaultValue={mbti}
               disabled={!editing}
               name='mbti'
               className='signup-mbti'
               onChange={(e) => onChange(e)}
             >
               {mbtiArr.map((mb) => (
-                <option
-                  value={`${mb}`}
-                  key={`${mb}`}
-                  defaultValue={mb === user.mbti}
-                >{`${mb}`}</option>
+                <option key={`${mb}`}>{`${mb}`}</option>
               ))}
             </select>
           </div>

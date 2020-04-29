@@ -20,16 +20,18 @@ const MyComments = ({ mypage: { mycomments } }) => {
     <>
       <table className='community'>
         <tbody>
-          {mycomments.map((post) => (
-            <tr className='list' key={post._id}>
-              <td className='title'>
-                <Link to={`/posts/${post._id}`}>{post.comments[0].text}</Link>
-              </td>
-              <td className='date'>
-                <Moment format='YYYY/MM/DD'>{post.comments[0].date}</Moment>
-              </td>
-            </tr>
-          ))}
+          {mycomments
+            .map((post) => (
+              <tr className='list' key={post._id}>
+                <td className='title'>
+                  <Link to={`/posts/${post._id}`}>{post.comments[0].text}</Link>
+                </td>
+                <td className='date'>
+                  <Moment format='YYYY/MM/DD'>{post.comments[0].date}</Moment>
+                </td>
+              </tr>
+            ))
+            .slice(startIndex, endIndex)}
         </tbody>
       </table>
       <div className='pagination-div'>
