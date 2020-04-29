@@ -4,6 +4,10 @@
   --primary-color: rgb(73, 207, 207);
   --danger-color: #dc3545;
 }
+input {
+  -webkit-appearance: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -474,6 +478,15 @@ p {
 }
 
 /* 포스트폼 */
+.post-create .title {
+  border: 1px solid rgb(168, 166, 166);
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 5px;
+}
 
 .post-create .title:focus {
   outline: none;
@@ -513,16 +526,6 @@ p {
 
 .comment-form .textarea:focus {
   outline: none;
-}
-
-.post-create .title {
-  border: 1px solid black;
-  width: 100%;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 17px;
-  padding: 3px;
 }
 
 /*

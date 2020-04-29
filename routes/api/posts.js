@@ -2,9 +2,75 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
+const multer = require('multer');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    if (ext !== '.jpg' && ext !== '.png' && ext !== '.mp4') {
+      return cb(res.status(400).end('only jpg, png, mp4 is allowed'), false);
+    }
+    cb(null, true);
+  },
+});
+const upload = multer({ storage: storage }).single('file');
+
+router.post('/uploadfiles', (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.log('에러');
+      return res.json({ success: false, err });
+    }
+    return res.json({
+      success: true,
+      url: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
+  });
+});
+
+router.post(
+  '/',
+  [
+    auth,
+    [
+      check('content', '내용을 입력하세요').not().isEmpty(),
+      check('title', '제목을 입력하세요').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+
+      const newPost = new Post({
+        title: req.body.title,
+        text: req.body.content,
+        name: user.name,
+        mbti: user.mbti,
+        user: req.user.id,
+      });
+
+      const post = await newPost.save();
+      res.json({ success: true, post });
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send('Server error');
+    }
+  }
+);
+/*
 router.post(
   '/',
   [
@@ -39,13 +105,15 @@ router.post(
   }
 );
 
+*/
+
 router.put(
   '/:id',
   [
     auth,
     [
-      check('text', 'Text is required').not().isEmpty(),
-      check('title', 'Title is required').not().isEmpty(),
+      check('content', '내용을 입력하세요').not().isEmpty(),
+      check('title', '제목을 입력하세요').not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -56,7 +124,7 @@ router.put(
     try {
       const post = await Post.findOneAndUpdate(
         { _id: req.params.id },
-        { $set: { title: req.body.title, text: req.body.text } },
+        { $set: { title: req.body.title, text: req.body.content } },
         { returnNewDocument: true }
       );
       res.json(post);

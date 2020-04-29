@@ -15,7 +15,7 @@ const Post = ({
   post: { post },
   match,
   deletePost,
-  auth
+  auth,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -42,16 +42,16 @@ const Post = ({
         </Header.Subheader>
       </Header>
       <Divider></Divider>
-      <div style={{ whiteSpace: 'pre-line', fontSize: '13px' }}>
-        {post.text}
-      </div>
-
+      <div
+        dangerouslySetInnerHTML={{ __html: post.text }}
+        style={{ whiteSpace: 'pre-line', fontSize: '13px' }}
+      ></div>
       <Header as='h5' dividing>
         댓글
       </Header>
       <CommentForm postId={post._id} />
       <div className='comments'>
-        {post.comments.map(comment => (
+        {post.comments.map((comment) => (
           <CommentItem key={comment._id} comment={comment} postId={post._id} />
         ))}
       </div>
@@ -113,11 +113,11 @@ Post.propTypes = {
   getPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
-  deletePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
-  auth: state.auth
+  auth: state.auth,
 });
 export default connect(mapStateToProps, { getPost, deletePost })(
   withRouter(Post)

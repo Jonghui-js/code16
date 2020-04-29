@@ -35,6 +35,7 @@ export const addPost = (formData) => async (dispatch) => {
       'Content-Type': 'application/json',
     },
   };
+  console.log('addpost 실행');
   try {
     const res = await axios.post('/api/posts', formData, config);
 

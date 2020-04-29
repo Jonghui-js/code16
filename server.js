@@ -8,7 +8,7 @@ connectDB();
 
 app.use(
   express.json({
-    extended: false
+    extended: false,
   })
 );
 
@@ -19,6 +19,8 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/mypage', require('./routes/api/mypage'));
 app.use('/api/main', require('./routes/api/main'));
+
+app.use('/uploads', express.static('uploads'));
 
 // static assets in production
 
